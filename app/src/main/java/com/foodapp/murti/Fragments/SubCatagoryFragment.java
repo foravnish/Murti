@@ -168,34 +168,38 @@ public class SubCatagoryFragment extends Fragment {
 
                 DataList.clear();
                 Getseter.exitdialog(dialog);
-                if (response.optString("status").equalsIgnoreCase("success"))
+                if (response.optString("status").equalsIgnoreCase("success")) {
                     jsonArray = response.optJSONArray("message");
 
-                try {
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        jsonObject = jsonArray.optJSONObject(i);
+                    try {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            jsonObject = jsonArray.optJSONObject(i);
 
-                        JSONArray jsonArray1 = jsonObject.optJSONArray("sizes");
-                        //DataList2.clear();
-                        Log.d("fdgdgdfgd", jsonArray1.toString());
-                        for (int j = 0; j < jsonArray1.length(); j++) {
-                            jsonObject1 = jsonArray1.optJSONObject(j);
+                            JSONArray jsonArray1 = jsonObject.optJSONArray("sizes");
+                            //DataList2.clear();
+                            Log.d("fdgdgdfgd", jsonArray1.toString());
+                            for (int j = 0; j < jsonArray1.length(); j++) {
+                                jsonObject1 = jsonArray1.optJSONObject(j);
 
-                            Log.d("gdfgdfgdfghdfgs", jsonArray1.toString());
-                            Log.d("fdgdfdgdfggdfgd", jsonObject1.optString("sell_price"));
+                                Log.d("gdfgdfgdfghdfgs", jsonArray1.toString());
+                                Log.d("fdgdfdgdfggdfgd", jsonObject1.optString("sell_price"));
 
-                            DataList.add(new Getseter(jsonObject.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("photo"), jsonObject1.optString("id"), jsonObject1.optString("psize_id"), jsonObject1.optString("size"), jsonObject1.optString("mrp_price"), jsonObject1.optString("discount"), jsonObject1.optString("sell_price"), jsonObject1.optString("psize_image")));
+                                DataList.add(new Getseter(jsonObject.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("photo"), jsonObject1.optString("id"), jsonObject1.optString("psize_id"), jsonObject1.optString("size"), jsonObject1.optString("mrp_price"), jsonObject1.optString("discount"), jsonObject1.optString("sell_price"), jsonObject1.optString("psize_image")));
 
-                            //DataList2.add(new Getseter(jsonObject1.optString("product_id"),jsonObject1.optString("psize_id"),jsonObject1.optString("size"),jsonObject1.optString("mrp_price"),jsonObject1.optString("discount"),jsonObject1.optString("sell_price"),jsonObject1.optString("psize_image")));
+                                //DataList2.add(new Getseter(jsonObject1.optString("product_id"),jsonObject1.optString("psize_id"),jsonObject1.optString("size"),jsonObject1.optString("mrp_price"),jsonObject1.optString("discount"),jsonObject1.optString("sell_price"),jsonObject1.optString("psize_image")));
 
+
+                            }
+                            //gridview2.setAdapter(adapter2);
+                            gridview.setAdapter(adapter);
 
                         }
-                        //gridview2.setAdapter(adapter2);
-                        gridview.setAdapter(adapter);
-
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                }
+                else{
+                    Toast.makeText(getActivity(), "No product found...", Toast.LENGTH_SHORT).show();
                 }
 
 

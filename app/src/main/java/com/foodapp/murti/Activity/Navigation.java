@@ -92,7 +92,7 @@ public class Navigation extends AppCompatActivity
             e.printStackTrace();
         }
 
-        this.setTitle("Spinof");
+        this.setTitle("Murti");
 
 
 
