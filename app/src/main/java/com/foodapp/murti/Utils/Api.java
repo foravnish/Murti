@@ -24,7 +24,4 @@ public class Api {
     public static  String placeUserOrders      =BaseUrl+"placeUserOrders";
 
 
-
-
-
 }

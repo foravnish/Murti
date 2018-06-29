@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.foodapp.murti.Activity.Navigation;
+import com.foodapp.murti.Activity.PaymentAct;
 import com.foodapp.murti.Activity.ThankAct;
 import com.foodapp.murti.R;
 import com.foodapp.murti.Utils.Api;
@@ -170,304 +171,84 @@ public class Delivery extends Fragment {
 
 
 
-        checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                placeOrder();
-
-//                if (!Getseter.preferences.getString("fname","").toString().equals("") &&
-//                        !Getseter.preferences.getString("lname","").toString().equals("") &&
-//                        !Getseter.preferences.getString("house_no","").toString().equals("") &&
-//                        !Getseter.preferences.getString("street","").toString().equals("") &&
-//                        !Getseter.preferences.getString("area","").toString().equals("") &&
-//                        !Getseter.preferences.getString("pincode","").toString().equals("") &&
-//                        !Getseter.preferences.getString("city_name","").toString().equals("") &&
-//                        !Getseter.preferences.getString("mobile","").toString().equals("")){
-////
-//                    if (paymentMode.equals("Cash on Delivery")){
-//
-//                        placeOrder();
-//
-////                        Intent intent=new Intent(getActivity(), ThankAct.class);
-////                        intent.putExtra("orderno",jsonObject1.optString("order_id"));
-////                        intent.putExtra("email",emailString.toString());
-////                        intent.putExtra("phone",phoneString.toString());
-////                        startActivity(intent);
-////
-//                    }
-//                    else if (paymentMode.equals("Credit/Debit card")){
-//
-//
-//
-//                        JSONArray cartItemsArray = null;
-//
-//                        try {
-//
-//                            cartItemsArray = new JSONArray();
-//                            JSONObject cartItemsObjedct;
-//                            for (int i = 0; i < getArguments().getInt("length"); i++) {
-//                                cartItemsObjedct = new JSONObject();
-//                                cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
-//                                cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
-//                                cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
-//                                cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
-//                                cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
-//                                cartItemsArray.put(cartItemsObjedct);
-//                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
-//                            }
-//                            //  dataObj.put("productArr", cartItemsArray);
-//                        } catch (JSONException e) { // TODO Auto-generated catch bloc
-//                            e.printStackTrace();
-//                        }
-//
-////                        params.put("productArr",cartItemsArray.toString());
-//
-//                        Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
-//
-//
-//
-//                        Intent intent=new Intent(getActivity(), PaymentAct.class);
-//
-//                        intent.putExtra("item",orderitem.getText().toString());
-//                        intent.putExtra("subtotal",subtotal.getText().toString());
-//                        intent.putExtra("charge",charge.getText().toString());
-//                        intent.putExtra("total",total.getText().toString());
-//                        intent.putExtra("productArr",cartItemsArray.toString());
-//                        intent.putExtra("email",emailString.toString());
-//                        intent.putExtra("phone",phoneString.toString());
-//                        startActivity(intent);
-//
-//                    }
-//                }
-//                else{
-//                    Fragment fragment=new UpdateProfile();
-//                    FragmentManager manager=getFragmentManager();
-//                    FragmentTransaction ft=manager.beginTransaction();
-//                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-//                    ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
-//
-//                }
-
-            }
-
-            private void placeOrder() {
-                Getseter.showdialog(dialog);
-
-
-                StringRequest stringRequest=new StringRequest(Request.Method.POST, Api.placeUserOrders, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Getseter.exitdialog(dialog);
-                        Log.d("fgvdgdfgdfgd",response.toString());
-
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject = new JSONObject(response);
-
-                            if (jsonObject.optString("status").equals("success")) {
-
-                                db.deleteCatogory();
-                                Navigation.textOne.setText("0");
-
-                                JSONObject jsonObject1=jsonObject.optJSONObject("message");
-
-
-                                Intent intent=new Intent(getActivity(), ThankAct.class);
-                                intent.putExtra("orderno",jsonObject1.optString("order_id"));
-                                intent.putExtra("email",emailString.toString());
-                                intent.putExtra("phone",phoneString.toString());
-                                startActivity(intent);
-
-                            }
-                            else{
-                                Toast.makeText(getActivity(), "Some error! Please try again...", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "Please connect to the internet.", Toast.LENGTH_SHORT).show();
-                        Log.d("fgvdgdfgdfgd2",error.toString());
-                        Getseter.exitdialog(dialog);
-
-                    }
-                }){
-
-
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<String, String>();
-
-
-                        params.put("user_id",Getseter.preferences.getString("user_id",""));
-                        params.put("amount", subtotal.getText().toString());
-                        params.put("discount", "0");
-                        params.put("total_amount", subtotal.getText().toString());
-                        params.put("ship_fname",Getseter.preferences.getString("fname",""));
-                        params.put("ship_lname", Getseter.preferences.getString("lname",""));
-                        params.put("ship_email", Getseter.preferences.getString("emailid",""));
-                        params.put("ship_house_no", Getseter.preferences.getString("house_no",""));
-                        params.put("ship_street", Getseter.preferences.getString("street",""));
-                        params.put("ship_landmark", Getseter.preferences.getString("landmark",""));
-                        params.put("ship_pincode", Getseter.preferences.getString("pincode",""));
-                        params.put("ship_area", Getseter.preferences.getString("area",""));
-                        params.put("ship_city_id", Getseter.preferences.getString("city_id",""));
-                        params.put("ship_mobile",Getseter.preferences.getString("mobile",""));
-                        params.put("expres_amt", total.getText().toString());
-                        params.put("shipping_amount", delCharge.toString());
-                        params.put("mode", "COD");
-
-
-                        Log.d("user_id",Getseter.preferences.getString("user_id",""));
-                        Log.d("amount", subtotal.getText().toString());
-                        Log.d("discount", "0");
-                        Log.d("total_amount", subtotal.getText().toString());
-                        Log.d("ship_fname",Getseter.preferences.getString("fname",""));
-                        Log.d("ship_lname", Getseter.preferences.getString("lname",""));
-                        Log.d("ship_email", Getseter.preferences.getString("emailid",""));
-                        Log.d("ship_house_no", Getseter.preferences.getString("house_no",""));
-                        Log.d("ship_street", Getseter.preferences.getString("street",""));
-                        Log.d("ship_landmark", Getseter.preferences.getString("landmark",""));
-                        Log.d("ship_pincode", Getseter.preferences.getString("pincode",""));
-                        Log.d("ship_area", Getseter.preferences.getString("area",""));
-                        Log.d("ship_city_id", Getseter.preferences.getString("city_id",""));
-                        Log.d("ship_mobile",Getseter.preferences.getString("mobile",""));
-                        Log.d("expres_amt", total.getText().toString());
-                        Log.d("shipping_amount", delCharge.toString());
-
-
-                        //  JSONObject dataObj = new JSONObject();
-                        JSONArray cartItemsArray = null;
-
-                        try {
-                            cartItemsArray = new JSONArray();
-                            JSONObject cartItemsObjedct;
-                            for (int i = 0; i < getArguments().getInt("length"); i++) {
-                                cartItemsObjedct = new JSONObject();
-                                cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
-                                cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
-                                cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
-                                cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
-                                cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
-                                cartItemsArray.put(cartItemsObjedct);
-                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
-                            }
-                            //  dataObj.put("productArr", cartItemsArray);
-                        } catch (JSONException e) { // TODO Auto-generated catch bloc
-                            e.printStackTrace();
-                        }
-
-                        params.put("productArr",cartItemsArray.toString());
-
-                        Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
-
-
-                        return params;
-                    }
-                };
-
-
-//                stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-//                        0,
-//                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//                 AppController.getInstance().addToRequestQueue(stringRequest);
-
-                stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                stringRequest.setShouldCache(false);
-                AppController.getInstance().addToRequestQueue(stringRequest);
-
-            }
-        });
-
-
-
-        ///TODO WITH VALIDATION
 //        checkout.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //
-//                if (!Getseter.preferences.getString("fname","").toString().equals("") &&
-//                        !Getseter.preferences.getString("lname","").toString().equals("") &&
-//                        !Getseter.preferences.getString("house_no","").toString().equals("") &&
-//                        !Getseter.preferences.getString("street","").toString().equals("") &&
-//                        !Getseter.preferences.getString("area","").toString().equals("") &&
-//                        !Getseter.preferences.getString("pincode","").toString().equals("") &&
-//                        !Getseter.preferences.getString("city_name","").toString().equals("") &&
-//                        !Getseter.preferences.getString("mobile","").toString().equals("")){
+//                placeOrder();
 //
-//
-//
-//                    if (paymentMode.equals("Cash on Delivery")){
-//
-//                        placeOrder();
-//
-////                        Intent intent=new Intent(getActivity(), ThankAct.class);
-////                        intent.putExtra("orderno",jsonObject1.optString("order_id"));
+////                if (!Getseter.preferences.getString("fname","").toString().equals("") &&
+////                        !Getseter.preferences.getString("lname","").toString().equals("") &&
+////                        !Getseter.preferences.getString("house_no","").toString().equals("") &&
+////                        !Getseter.preferences.getString("street","").toString().equals("") &&
+////                        !Getseter.preferences.getString("area","").toString().equals("") &&
+////                        !Getseter.preferences.getString("pincode","").toString().equals("") &&
+////                        !Getseter.preferences.getString("city_name","").toString().equals("") &&
+////                        !Getseter.preferences.getString("mobile","").toString().equals("")){
+//////
+////                    if (paymentMode.equals("Cash on Delivery")){
+////
+////                        placeOrder();
+////
+//////                        Intent intent=new Intent(getActivity(), ThankAct.class);
+//////                        intent.putExtra("orderno",jsonObject1.optString("order_id"));
+//////                        intent.putExtra("email",emailString.toString());
+//////                        intent.putExtra("phone",phoneString.toString());
+//////                        startActivity(intent);
+//////
+////                    }
+////                    else if (paymentMode.equals("Credit/Debit card")){
+////
+////
+////
+////                        JSONArray cartItemsArray = null;
+////
+////                        try {
+////
+////                            cartItemsArray = new JSONArray();
+////                            JSONObject cartItemsObjedct;
+////                            for (int i = 0; i < getArguments().getInt("length"); i++) {
+////                                cartItemsObjedct = new JSONObject();
+////                                cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
+////                                cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
+////                                cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
+////                                cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
+////                                cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
+////                                cartItemsArray.put(cartItemsObjedct);
+////                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
+////                            }
+////                            //  dataObj.put("productArr", cartItemsArray);
+////                        } catch (JSONException e) { // TODO Auto-generated catch bloc
+////                            e.printStackTrace();
+////                        }
+////
+//////                        params.put("productArr",cartItemsArray.toString());
+////
+////                        Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
+////
+////
+////
+////                        Intent intent=new Intent(getActivity(), PaymentAct.class);
+////
+////                        intent.putExtra("item",orderitem.getText().toString());
+////                        intent.putExtra("subtotal",subtotal.getText().toString());
+////                        intent.putExtra("charge",charge.getText().toString());
+////                        intent.putExtra("total",total.getText().toString());
+////                        intent.putExtra("productArr",cartItemsArray.toString());
 ////                        intent.putExtra("email",emailString.toString());
 ////                        intent.putExtra("phone",phoneString.toString());
 ////                        startActivity(intent);
 ////
-//                    }
-//                    else if (paymentMode.equals("Credit/Debit card")){
-//
-//
-//
-//                        JSONArray cartItemsArray = null;
-//
-//                        try {
-//
-//                            cartItemsArray = new JSONArray();
-//                            JSONObject cartItemsObjedct;
-//                            for (int i = 0; i < getArguments().getInt("length"); i++) {
-//                                cartItemsObjedct = new JSONObject();
-//                                cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
-//                                cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
-//                                cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
-//                                cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
-//                                cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
-//                                cartItemsArray.put(cartItemsObjedct);
-//                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
-//                            }
-//                            //  dataObj.put("productArr", cartItemsArray);
-//                        } catch (JSONException e) { // TODO Auto-generated catch bloc
-//                            e.printStackTrace();
-//                        }
-//
-////                        params.put("productArr",cartItemsArray.toString());
-//
-//                        Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
-//
-//
-//
-//                        Intent intent=new Intent(getActivity(), PaymentAct.class);
-//
-//                        intent.putExtra("item",orderitem.getText().toString());
-//                        intent.putExtra("subtotal",subtotal.getText().toString());
-//                        intent.putExtra("charge",charge.getText().toString());
-//                        intent.putExtra("total",total.getText().toString());
-//                        intent.putExtra("productArr",cartItemsArray.toString());
-//                        intent.putExtra("email",emailString.toString());
-//                        intent.putExtra("phone",phoneString.toString());
-//                        startActivity(intent);
-//
-//                    }
-//                }
-//                else{
-//                    Fragment fragment=new UpdateProfile();
-//                    FragmentManager manager=getFragmentManager();
-//                    FragmentTransaction ft=manager.beginTransaction();
-//                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-//                    ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
-//
-//                }
+////                    }
+////                }
+////                else{
+////                    Fragment fragment=new UpdateProfile();
+////                    FragmentManager manager=getFragmentManager();
+////                    FragmentTransaction ft=manager.beginTransaction();
+////                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+////                    ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+////
+////                }
 //
 //            }
 //
@@ -493,13 +274,11 @@ public class Delivery extends Fragment {
 //                                JSONObject jsonObject1=jsonObject.optJSONObject("message");
 //
 //
-//                                    Intent intent=new Intent(getActivity(), ThankAct.class);
-//                                    intent.putExtra("orderno",jsonObject1.optString("order_id"));
-//                                    intent.putExtra("email",emailString.toString());
-//                                    intent.putExtra("phone",phoneString.toString());
-//                                    startActivity(intent);
-//
-//
+//                                Intent intent=new Intent(getActivity(), ThankAct.class);
+//                                intent.putExtra("orderno",jsonObject1.optString("order_id"));
+//                                intent.putExtra("email",emailString.toString());
+//                                intent.putExtra("phone",phoneString.toString());
+//                                startActivity(intent);
 //
 //                            }
 //                            else{
@@ -521,8 +300,6 @@ public class Delivery extends Fragment {
 //
 //                    }
 //                }){
-//
-//
 //
 //
 //                    @Override
@@ -567,7 +344,7 @@ public class Delivery extends Fragment {
 //                        Log.d("shipping_amount", delCharge.toString());
 //
 //
-//                      //  JSONObject dataObj = new JSONObject();
+//                        //  JSONObject dataObj = new JSONObject();
 //                        JSONArray cartItemsArray = null;
 //
 //                        try {
@@ -583,7 +360,7 @@ public class Delivery extends Fragment {
 //                                cartItemsArray.put(cartItemsObjedct);
 //                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
 //                            }
-//                          //  dataObj.put("productArr", cartItemsArray);
+//                            //  dataObj.put("productArr", cartItemsArray);
 //                        } catch (JSONException e) { // TODO Auto-generated catch bloc
 //                            e.printStackTrace();
 //                        }
@@ -610,6 +387,230 @@ public class Delivery extends Fragment {
 //
 //            }
 //        });
+
+
+
+        ///TODO WITH VALIDATION
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!Getseter.preferences.getString("fname","").toString().equals("") &&
+                        !Getseter.preferences.getString("lname","").toString().equals("") &&
+                        !Getseter.preferences.getString("house_no","").toString().equals("") &&
+                        !Getseter.preferences.getString("street","").toString().equals("") &&
+                        !Getseter.preferences.getString("area","").toString().equals("") &&
+                        !Getseter.preferences.getString("pincode","").toString().equals("") &&
+                        !Getseter.preferences.getString("city_name","").toString().equals("") &&
+                        !Getseter.preferences.getString("mobile","").toString().equals("")){
+
+
+
+                    if (paymentMode.equals("Cash on Delivery")){
+
+                        placeOrder();
+
+//                        Intent intent=new Intent(getActivity(), ThankAct.class);
+//                        intent.putExtra("orderno",jsonObject1.optString("order_id"));
+//                        intent.putExtra("email",emailString.toString());
+//                        intent.putExtra("phone",phoneString.toString());
+//                        startActivity(intent);
+//
+                    }
+                    else if (paymentMode.equals("Credit/Debit card")){
+
+
+
+                        JSONArray cartItemsArray = null;
+
+                        try {
+
+                            cartItemsArray = new JSONArray();
+                            JSONObject cartItemsObjedct;
+                            for (int i = 0; i < getArguments().getInt("length"); i++) {
+                                cartItemsObjedct = new JSONObject();
+                                cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
+                                cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
+                                cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
+                                cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
+                                cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
+                                cartItemsArray.put(cartItemsObjedct);
+                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
+                            }
+                            //  dataObj.put("productArr", cartItemsArray);
+                        } catch (JSONException e) { // TODO Auto-generated catch bloc
+                            e.printStackTrace();
+                        }
+
+//                        params.put("productArr",cartItemsArray.toString());
+
+                        Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
+
+
+
+                        Intent intent=new Intent(getActivity(), PaymentAct.class);
+
+                        intent.putExtra("item",orderitem.getText().toString());
+                        intent.putExtra("subtotal",subtotal.getText().toString());
+                        intent.putExtra("charge",charge.getText().toString());
+                        intent.putExtra("total",total.getText().toString());
+                        intent.putExtra("productArr",cartItemsArray.toString());
+                        intent.putExtra("email",emailString.toString());
+                        intent.putExtra("phone",phoneString.toString());
+                        startActivity(intent);
+
+                    }
+                }
+                else{
+                    Fragment fragment=new UpdateProfile();
+                    FragmentManager manager=getFragmentManager();
+                    FragmentTransaction ft=manager.beginTransaction();
+                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+                    ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+
+                }
+
+            }
+
+            private void placeOrder() {
+                Getseter.showdialog(dialog);
+
+
+                StringRequest stringRequest=new StringRequest(Request.Method.POST, Api.placeUserOrders, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Getseter.exitdialog(dialog);
+                        Log.d("fgvdgdfgdfgd",response.toString());
+
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+
+                            if (jsonObject.optString("status").equals("success")) {
+
+                                db.deleteCatogory();
+                                Navigation.textOne.setText("0");
+
+                                JSONObject jsonObject1=jsonObject.optJSONObject("message");
+
+
+                                    Intent intent=new Intent(getActivity(), ThankAct.class);
+                                    intent.putExtra("orderno",jsonObject1.optString("order_id"));
+                                    intent.putExtra("email",emailString.toString());
+                                    intent.putExtra("phone",phoneString.toString());
+                                    startActivity(intent);
+
+
+
+                            }
+                            else{
+                                Toast.makeText(getActivity(), "Some error! Please try again...", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Please connect to the internet.", Toast.LENGTH_SHORT).show();
+                        Log.d("fgvdgdfgdfgd2",error.toString());
+                        Getseter.exitdialog(dialog);
+
+                    }
+                }){
+
+
+
+
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+
+
+                        params.put("user_id",Getseter.preferences.getString("user_id",""));
+                        params.put("amount", subtotal.getText().toString());
+                        params.put("discount", "0");
+                        params.put("total_amount", subtotal.getText().toString());
+                        params.put("ship_fname",Getseter.preferences.getString("fname",""));
+                        params.put("ship_lname", Getseter.preferences.getString("lname",""));
+                        params.put("ship_email", Getseter.preferences.getString("emailid",""));
+                        params.put("ship_house_no", Getseter.preferences.getString("house_no",""));
+                        params.put("ship_street", Getseter.preferences.getString("street",""));
+                        params.put("ship_landmark", Getseter.preferences.getString("landmark",""));
+                        params.put("ship_pincode", Getseter.preferences.getString("pincode",""));
+                        params.put("ship_area", Getseter.preferences.getString("area",""));
+                        params.put("ship_city_id", Getseter.preferences.getString("city_id",""));
+                        params.put("ship_mobile",Getseter.preferences.getString("mobile",""));
+                        params.put("expres_amt", total.getText().toString());
+                        params.put("shipping_amount", delCharge.toString());
+                        params.put("mode", "COD");
+
+
+                        Log.d("user_id",Getseter.preferences.getString("user_id",""));
+                        Log.d("amount", subtotal.getText().toString());
+                        Log.d("discount", "0");
+                        Log.d("total_amount", subtotal.getText().toString());
+                        Log.d("ship_fname",Getseter.preferences.getString("fname",""));
+                        Log.d("ship_lname", Getseter.preferences.getString("lname",""));
+                        Log.d("ship_email", Getseter.preferences.getString("emailid",""));
+                        Log.d("ship_house_no", Getseter.preferences.getString("house_no",""));
+                        Log.d("ship_street", Getseter.preferences.getString("street",""));
+                        Log.d("ship_landmark", Getseter.preferences.getString("landmark",""));
+                        Log.d("ship_pincode", Getseter.preferences.getString("pincode",""));
+                        Log.d("ship_area", Getseter.preferences.getString("area",""));
+                        Log.d("ship_city_id", Getseter.preferences.getString("city_id",""));
+                        Log.d("ship_mobile",Getseter.preferences.getString("mobile",""));
+                        Log.d("expres_amt", total.getText().toString());
+                        Log.d("shipping_amount", delCharge.toString());
+
+
+                      //  JSONObject dataObj = new JSONObject();
+                        JSONArray cartItemsArray = null;
+
+                        try {
+                            cartItemsArray = new JSONArray();
+                            JSONObject cartItemsObjedct;
+                            for (int i = 0; i < getArguments().getInt("length"); i++) {
+                                cartItemsObjedct = new JSONObject();
+                                cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
+                                cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
+                                cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
+                                cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
+                                cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
+                                cartItemsArray.put(cartItemsObjedct);
+                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
+                            }
+                          //  dataObj.put("productArr", cartItemsArray);
+                        } catch (JSONException e) { // TODO Auto-generated catch bloc
+                            e.printStackTrace();
+                        }
+
+                        params.put("productArr",cartItemsArray.toString());
+
+                        Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
+
+
+                        return params;
+                    }
+                };
+
+
+//                stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+//                        0,
+//                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//                 AppController.getInstance().addToRequestQueue(stringRequest);
+
+                stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                stringRequest.setShouldCache(false);
+                AppController.getInstance().addToRequestQueue(stringRequest);
+
+            }
+        });
 
         return view;
     }

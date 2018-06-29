@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
-        android:background="@drawable/logo"/>
+        android:background="@drawable/murti"/>
 
     <Button
         android:id="@+id/signup"
