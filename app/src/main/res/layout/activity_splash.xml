@@ -10,12 +10,12 @@
     tools:context="com.foodapp.murti.Activity.MainActivity">
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@drawable/logo"/>
+        android:background="@drawable/murti"/>
 
     <!--<Button-->
         <!--android:id="@+id/signup"-->

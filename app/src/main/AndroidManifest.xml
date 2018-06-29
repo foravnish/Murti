@@ -12,7 +12,7 @@
     <application
         android:name="com.foodapp.murti.Utils.AppController"
         android:allowBackup="false"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/murti"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
