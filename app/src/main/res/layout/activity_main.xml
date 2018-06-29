@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/chapati"
     android:orientation="vertical"
-    tools:context="com.foodapp.appfood.Activity.MainActivity">
+    tools:context="com.foodapp.murti.Activity.MainActivity">
 
     <ImageView
         android:layout_width="200dp"

@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.foodapp.appfood"
+        applicationId "com.foodapp.murti"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1

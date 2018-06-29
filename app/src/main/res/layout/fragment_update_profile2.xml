@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:orientation="vertical"
-    tools:context="com.foodapp.appfood.Fragments.AccountDetails">
+    tools:context="com.foodapp.murti.Fragments.AccountDetails">
 
     <TextView
         android:layout_width="match_parent"

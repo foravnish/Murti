@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.foodapp.appfood.Fragments.CartFragment">
+    tools:context="com.foodapp.murti.Fragments.CartFragment">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinatorRootLayout"

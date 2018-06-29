@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="com.foodapp.appfood.Activity.MainActivity">
+    tools:context="com.foodapp.murti.Activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

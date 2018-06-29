@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
-    tools:context="com.foodapp.appfood.Activity.MainActivity">
+    tools:context="com.foodapp.murti.Activity.MainActivity">
 
     <ImageView
         android:layout_width="300dp"

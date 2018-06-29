@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.foodapp.appfood.Fragments.TermsAndConditions">
+    tools:context="com.foodapp.murti.Fragments.TermsAndConditions">
 
     <TextView
         android:layout_width="match_parent"
