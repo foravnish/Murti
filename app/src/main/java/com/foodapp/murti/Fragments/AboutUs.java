@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +65,7 @@ public class AboutUs extends Fragment {
                     try {
                         JSONArray jsonArray=response.getJSONArray("message");
                         JSONObject jsonObject= jsonArray.getJSONObject(0);
-                        textview.setText(jsonObject.optString("content"));
+                        textview.setText(Html.fromHtml(jsonObject.optString("content")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
