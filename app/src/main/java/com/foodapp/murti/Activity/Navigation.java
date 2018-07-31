@@ -136,7 +136,13 @@ public class Navigation extends AppCompatActivity
             public void onClick(View v) {
                 fragment=new UpdateProfile();
                 FragmentManager fm=getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
+                Bundle bundle=new Bundle();
+                bundle.putString("type","none");
+                bundle.putString("orderitem", "");
+                bundle.putString("cal_price","");
+                bundle.putInt("length",0);
+                FragmentTransaction ft=fm.beginTransaction();
+                fragment.setArguments(bundle);
                 ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
                 ft.replace(R.id.content_frame, fragment).addToBackStack(null);
                 ft.commit();

@@ -162,7 +162,13 @@ public class Delivery extends Fragment {
             public void onClick(View v) {
                 Fragment fragment=new UpdateProfile();
                 FragmentManager manager=getFragmentManager();
+                Bundle bundle=new Bundle();
+                bundle.putString("type","prod");
+                bundle.putString("orderitem", getArguments().get("orderitem").toString());
+                bundle.putString("cal_price",getArguments().get("cal_price").toString());
+                bundle.putInt("length",getArguments().getInt("length"));
                 FragmentTransaction ft=manager.beginTransaction();
+                fragment.setArguments(bundle);
                 ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
             }
         });
@@ -464,7 +470,13 @@ public class Delivery extends Fragment {
                 else{
                     Fragment fragment=new UpdateProfile();
                     FragmentManager manager=getFragmentManager();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("type","prod");
+                    bundle.putString("orderitem", getArguments().get("orderitem").toString());
+                    bundle.putString("cal_price",getArguments().get("cal_price").toString());
+                    bundle.putInt("length",getArguments().getInt("length"));
                     FragmentTransaction ft=manager.beginTransaction();
+                    fragment.setArguments(bundle);
                     ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
                     ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
 
