@@ -10,7 +10,7 @@ public class Api {
 //        public static  String BaseUrl  =      "http://murtifoods.com/Api/index.php/spinof/";
 //        public static  String HashCode =      "http://murtifoods.com/getHashCode.php";
 
-         public static  String BaseUrl  =      "http://ecart.murtifoods.in/Api/index.php/spinof/";
+        public static  String BaseUrl  =      "http://ecart.murtifoods.in/Api/index.php/spinof/";
         public static  String HashCode =      "http://ecart.murtifoods.in/getHashCode.php";
 
     public static  String Login=        BaseUrl+"userLogin";
@@ -29,6 +29,5 @@ public class Api {
     public static  String changeUserPassword      =BaseUrl+"changeUserPassword";
     public static  String orderHistory      =BaseUrl+"orderHistory";
     public static  String placeUserOrders      =BaseUrl+"placeUserOrders";
-
 
 }
