@@ -5,51 +5,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.foodapp.murti.Fragments.CartFragment">
 
-    <android.support.design.widget.CoordinatorLayout
+    <LinearLayout
         android:id="@+id/coordinatorRootLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:id="@+id/android_appbar_layout"
+        <!--<android.support.design.widget.AppBarLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:id="@+id/android_appbar_layout"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+
+            <!--<android.support.design.widget.CollapsingToolbarLayout-->
+                <!--android:id="@+id/collapsingToolbarLayoutAndroidExample"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/white"-->
+                <!--app:layout_scrollFlags="scroll|exitUntilCollapsed">-->
+
+                <!--<com.android.volley.toolbox.NetworkImageView-->
+                    <!--android:id="@+id/parallax_header_imageview"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--app:layout_collapseMode="parallax"-->
+                    <!--app:layout_collapseParallaxMultiplier="0.7" />-->
+
+                <!--<android.support.v7.widget.Toolbar-->
+                    <!--android:id="@+id/toolbar_android"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="?attr/actionBarSize"-->
+                    <!--app:layout_collapseMode="pin"-->
+                    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+                    <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+            <!--</android.support.design.widget.CollapsingToolbarLayout>-->
+
+        <!--</android.support.design.widget.AppBarLayout>-->
+
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/parallax_header_imageview"
+            android:layout_width="200dp"
             android:layout_height="200dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:scaleType="fitXY"
+            android:layout_gravity="center"/>
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/collapsingToolbarLayoutAndroidExample"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <com.android.volley.toolbox.NetworkImageView
-                    android:id="@+id/parallax_header_imageview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:layout_gravity="center"
-                    app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.7" />
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_android"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-
-        </android.support.design.widget.AppBarLayout>
-
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:id="@+id/nested_scroll_view"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <!--<android.support.v4.widget.NestedScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:id="@+id/nested_scroll_view"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:fillViewport="true"-->
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
             <RelativeLayout
                 android:id="@+id/linear_layout_android"
@@ -182,10 +192,10 @@
                 </LinearLayout>
             </RelativeLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        <!--</android.support.v4.widget.NestedScrollView>-->
 
 
-    </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
