@@ -33,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.eftimoff.viewpagertransformers.ForegroundToBackgroundTransformer;
 import com.foodapp.murti.R;
 import com.foodapp.murti.Utils.Api;
 import com.foodapp.murti.Utils.AppController;
@@ -68,10 +69,32 @@ public class HomeFagment extends Fragment  {
     int myLastVisiblePos;
     RelativeLayout relative;
     Thread thread;
-    Timer timer;
+
     int currentPage;
     DatabaseHandler db;
     List<Getseter> DataList=new ArrayList<Getseter>();
+    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
+
+
+
+
+    int position;
+    private static int NUM_PAGES=0;
+    private Handler handler=new Handler();
+    private Runnable runnale=new Runnable(){
+        public void run(){
+            viewPager.setCurrentItem(position,true);
+            if(position>=NUM_PAGES ) position=0;
+            else position++;
+            // Move to the next page after 10s
+            handler.postDelayed(runnale, 3000);
+        }
+    };
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +112,7 @@ public class HomeFagment extends Fragment  {
         adapter=new Adapter();
 
 
+        position=0;
 
         /*
           check 2
@@ -104,6 +128,7 @@ public class HomeFagment extends Fragment  {
         customPagerAdapter=new CustomPagerAdapter();
         indicator = (CircleIndicator)myHeader.findViewById(R.id.indicator);
 
+        viewPager.setPageTransformer(true, new ForegroundToBackgroundTransformer());
         Getseter.showdialog(dialog);
 
 
@@ -121,7 +146,7 @@ public class HomeFagment extends Fragment  {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         try {
                             JSONObject jsonObject11 = jsonArray.getJSONObject(i);
-
+                            NUM_PAGES=jsonArray.length();
 
                             //if (jsonObject11.optString("TowerName").equals(uppertowername.toString()) ||  jsonObject11.optString("TowerName").equals("AllTower")) {
                             ImageList.add(new Getseter(jsonObject11.optString("title"), jsonObject11.optString("target_url"), jsonObject11.optString("short_description"), jsonObject11.optString("photo")));
@@ -140,23 +165,50 @@ public class HomeFagment extends Fragment  {
                 }
 
 
-                final Handler handler = new Handler();
 
-                final Runnable update = new Runnable() {
 
-                    public void run() {
-                        if (currentPage == ImageList.size()) {
-                            currentPage = 0;
-                        }
-                        viewPager.setCurrentItem(currentPage++);
-                    }
-                };
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        handler.post(update);
-                    }
-                }, 100, 5000);
+
+
+//                Timer timer = new Timer();
+//                timer.scheduleAtFixedRate(new SliderTimer(), 3000, 3000);
+
+
+
+
+
+//                 handler = new Handler();
+//                 Update = new Runnable() {
+//                    public void run() {
+//                        if (currentPage == ImageList.size()) {
+//                            currentPage = 0;
+//                        }
+//                        currentPage = currentPage+1;
+//                    }
+//                };
+//
+//                viewPager.setCurrentItem(currentPage, true);
+//                handler.postDelayed(Update, 3000);
+
+
+
+
+//                handler = new Handler();
+//
+//                Update = new Runnable() {
+//
+//                    public void run() {
+//                        if (currentPage == ImageList.size()) {
+//                            currentPage = 0;
+//                        }
+//                        viewPager.setCurrentItem(currentPage++);
+//                    }
+//                };
+//                new Timer().schedule(new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        handler.post(Update);
+//                    }
+//                }, 3000, 3000);
 
 
 
@@ -239,6 +291,18 @@ public class HomeFagment extends Fragment  {
         TextView name;
 
     }
+
+    public void onPause(){
+        super.onPause();
+        if(handler!=null)
+            handler.removeCallbacks(runnale);
+    }
+    public void onResume(){
+        super.onResume();
+        // Start auto screen slideshow after 1s
+        handler.postDelayed(runnale, 3000);
+    }
+
 
 
     class  Adapter extends BaseAdapter{
@@ -345,6 +409,23 @@ public class HomeFagment extends Fragment  {
     }
 
 
+
+    private class SliderTimer extends TimerTask {
+
+        @Override
+        public void run() {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (viewPager.getCurrentItem() < ImageList.size()) {
+                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                    } else {
+                        viewPager.setCurrentItem(0);
+                    }
+                }
+            });
+        }
+    }
 
 
 }
