@@ -109,7 +109,13 @@ public class AccountDetails extends Fragment {
             public void onClick(View v) {
                 Fragment fragment=new UpdateProfile();
                 FragmentManager manager=getFragmentManager();
+                Bundle bundle=new Bundle();
+                bundle.putString("type","none");
+                bundle.putString("orderitem", "");
+                bundle.putString("cal_price","");
+                bundle.putInt("length",0);
                 FragmentTransaction ft=manager.beginTransaction();
+                fragment.setArguments(bundle);
                 ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
             }
         });

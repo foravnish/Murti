@@ -3,19 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_final"
+    android:background="@drawable/spash1"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
     tools:context="com.foodapp.murti.Activity.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/murti"/>
+    <!--<ImageView-->
+        <!--android:layout_width="280dp"-->
+        <!--android:layout_height="190dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@drawable/murti"/>-->
 
     <!--<Button-->
         <!--android:id="@+id/signup"-->

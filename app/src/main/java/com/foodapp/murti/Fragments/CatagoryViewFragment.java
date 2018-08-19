@@ -119,8 +119,11 @@ public class CatagoryViewFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
 
+                Log.d("fsddgdgdfgdfgd", String.valueOf(response));
+
                 Getseter.exitdialog(dialog);
                 if (response.optString("status").equalsIgnoreCase("success")){
+
 
                     JSONArray jsonArray =response.optJSONArray("message");
                     for (int i=0;i<jsonArray.length();i++){

@@ -49,4 +49,6 @@ dependencies {
 //        exclude module: 'payumoney-sdk'
 //    }
     compile 'com.payumoney.sdkui:plug-n-play:1.4.0'
+    compile 'com.eftimoff:android-viewpager-transformers:1.0.1@aar'
+
 }

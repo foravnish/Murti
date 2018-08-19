@@ -255,11 +255,27 @@ public class UpdateProfile extends Fragment {
 
                                 Toast.makeText(getActivity(), jsonObject.optString("message").toString(), Toast.LENGTH_SHORT).show();
 
-                                Fragment fragment=new AccountDetails();
-                                FragmentManager manager=getFragmentManager();
-                                FragmentTransaction ft=manager.beginTransaction();
-                                ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-                                ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+                                if (getArguments().getString("type").equalsIgnoreCase("none")) {
+                                    Fragment fragment = new AccountDetails();
+                                    FragmentManager manager = getFragmentManager();
+                                    FragmentTransaction ft = manager.beginTransaction();
+                                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout, R.anim.frag_fade_right, R.anim.frag_fad_left);
+                                    ft.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+                                }
+                                else  if (getArguments().getString("type").equalsIgnoreCase("prod")) {
+
+                                    Fragment fragment=new Delivery();
+                                    FragmentManager manager=getFragmentManager();
+                                    FragmentTransaction ft=manager.beginTransaction();
+                                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+                                    ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("orderitem", getArguments().get("orderitem").toString());
+                                    bundle.putString("cal_price", getArguments().get("cal_price").toString());
+                                    bundle.putInt("length", getArguments().getInt("length"));
+                                    fragment.setArguments(bundle);
+
+                                }
                             }
                             else {
                                 Toast.makeText(getActivity(), jsonObject.optString("message").toString(), Toast.LENGTH_SHORT).show();
