@@ -11,13 +11,13 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:background="@drawable/murti"/>
+        android:src="@drawable/murti"/>
 
     <!--<Button-->
         <!--android:id="@+id/signup"-->
