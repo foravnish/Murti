@@ -74,7 +74,7 @@ public class HomeFagment extends Fragment  {
     DatabaseHandler db;
     List<Getseter> DataList=new ArrayList<Getseter>();
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
+    final long PERIOD_MS = 5000; // time in milliseconds between successive task executions.
 
 
 
@@ -88,7 +88,7 @@ public class HomeFagment extends Fragment  {
             if(position>=NUM_PAGES ) position=0;
             else position++;
             // Move to the next page after 10s
-            handler.postDelayed(runnale, 3000);
+            handler.postDelayed(runnale, PERIOD_MS);
         }
     };
 
@@ -300,7 +300,7 @@ public class HomeFagment extends Fragment  {
     public void onResume(){
         super.onResume();
         // Start auto screen slideshow after 1s
-        handler.postDelayed(runnale, 3000);
+        handler.postDelayed(runnale, PERIOD_MS);
     }
 
 
