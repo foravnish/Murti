@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "839044770123",
+    "firebase_url": "https://murtifoods-bf7ad.firebaseio.com",
+    "project_id": "murtifoods-bf7ad",
+    "storage_bucket": "murtifoods-bf7ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839044770123:android:bcdd0e0d181f1b44",
+        "android_client_info": {
+          "package_name": "com.foodapp.murti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839044770123-qkcis7n93v88l8ce0ltms0kq16qhh1c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhAwm9RbCwQe_PUGuvqQkZrn4oF1XChZQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
