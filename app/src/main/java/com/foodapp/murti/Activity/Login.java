@@ -88,14 +88,10 @@ public class Login extends AppCompatActivity  {
                     public void onClick(View view) {
 
                         if (TextUtils.isEmpty(mobile_edit.getText().toString())){
-
                             Toast.makeText(Login.this, "Please Enter Mobile No.", Toast.LENGTH_SHORT).show();
                         }
-
                         else {
-
                             mobileVerify_API(mobile_edit.getText().toString());
-
                         }
                     }
                 });
@@ -210,7 +206,7 @@ public class Login extends AppCompatActivity  {
 
                         Getseter.exitdialog(dialog);
 
-                    //Toast.makeText(Login.this, jsonObject.optString("message").toString(), Toast.LENGTH_SHORT).show();
+                         //Toast.makeText(Login.this, jsonObject.optString("message").toString(), Toast.LENGTH_SHORT).show();
 
                         JSONArray jsonArray=jsonObject.optJSONArray("message");
                         for (int i=0;i<jsonArray.length();i++) {
@@ -321,7 +317,6 @@ public class Login extends AppCompatActivity  {
 
                         optVerfy(mobileNo);
 
-
                     }
                     else{
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message") , Toast.LENGTH_SHORT).show();
@@ -331,8 +326,6 @@ public class Login extends AppCompatActivity  {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
 
             }
         }, new Response.ErrorListener() {
