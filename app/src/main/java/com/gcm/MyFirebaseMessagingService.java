@@ -38,7 +38,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getMessageType());
         Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getData());
-        Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getNotification().getBody());
+//        Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getNotification().getBody());
 
 
         String data= String.valueOf(remoteMessage.getData());
@@ -47,14 +47,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //org.substring(1, org.length()-1);
         //Log.d("ffdgdfgdfgd",  org.substring(1, org.length()-1).toString());
 
-        JSONObject jsonObject= null;
-        try {
-            jsonObject = new JSONObject(org.substring(1, org.length()-1).toString());
-            Log.d("ffdgdfgdfgd",jsonObject.toString());
+        JSONObject jsonObject = new JSONObject(remoteMessage.getData());
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
 
 
@@ -62,7 +56,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
             NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-            inboxStyle.addLine(remoteMessage.getNotification().getBody());
+            inboxStyle.addLine(jsonObject.optString("body"));
             Notification notification;
             final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                     getApplicationContext());
@@ -74,8 +68,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             notification = mBuilder.setSmallIcon(R.mipmap.new_logo).setTicker("Murti").setWhen(0)
                     .setAutoCancel(true)
-                    .setContentTitle("Pinerria")
-                    .setTicker("Pineria")
+                    .setContentTitle(jsonObject.optString("title"))
+                    .setTicker("Murti")
 //                .setContentIntent(resultPendingIntent)
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .setStyle(inboxStyle)
@@ -84,7 +78,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentIntent(contentIntent)
                    // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
-                    .setContentText(remoteMessage.getNotification().getBody())
+                    .setContentText(jsonObject.optString("body"))
                     .build();
 
 

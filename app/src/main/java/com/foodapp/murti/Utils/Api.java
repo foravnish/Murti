@@ -30,4 +30,9 @@ public class Api {
     public static  String orderHistory      =BaseUrl+"orderHistory";
     public static  String placeUserOrders      =BaseUrl+"placeUserOrders";
 
+    public static  String updateFcm      =BaseUrl+"updateFcm";
+    public static  String forgetPassword      =BaseUrl+"forgetPassword";
+    public static  String userChangePassword      =BaseUrl+"userChangePassword";
+
+
 }
