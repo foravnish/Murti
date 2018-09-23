@@ -433,9 +433,7 @@ public class Login extends AppCompatActivity  {
 
                     if (jsonObject.optString("status").equals("success")) {
 
-                        JSONArray jsonArray=jsonObject.getJSONArray("message");
-                      //  JSONObject jsonObject1=jsonArray.getJSONObject(0);
-
+                        Toast.makeText(Login.this, ""+jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),Login.class));
                        // newPasswordApi(jsonObject1.optString("id"));
 
