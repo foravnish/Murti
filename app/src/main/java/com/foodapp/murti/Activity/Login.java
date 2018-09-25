@@ -35,6 +35,7 @@ import com.foodapp.murti.R;
 import com.foodapp.murti.Utils.Api;
 import com.foodapp.murti.Utils.AppController;
 import com.foodapp.murti.Utils.Getseter;
+import com.foodapp.murti.Utils.MyPrefrences;
 import com.jakewharton.disklrucache.Util;
 
 import org.json.JSONArray;
@@ -131,21 +132,21 @@ public class Login extends AppCompatActivity  {
             public void onClick(View v) {
 
                 if (!email.getText().toString().equals("")){
-                    if (email.getText().toString().trim().matches(emailPattern)) {
+                   // if (email.getText().toString().trim().matches(emailPattern)) {
                         if (!password.getText().toString().equals("")){
                             loginfunction();
                             Getseter.showdialog(dialog);
                         }
                         else{
-                            Toast.makeText(Login.this, "Plaase enter password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else{
-                        Toast.makeText(Login.this, "Plaase enter valid email id", Toast.LENGTH_SHORT).show();
-                    }
+//                    }
+//                    else{
+//                        Toast.makeText(Login.this, "Plaase enter valid email id", Toast.LENGTH_SHORT).show();
+//                    }
                 }
                 else{
-                    Toast.makeText(Login.this, "Plaase enter email id", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Please enter email id", Toast.LENGTH_SHORT).show();
                 }
                 //startActivity(new Intent(Login.this,Navigation.class));
 
@@ -229,6 +230,7 @@ public class Login extends AppCompatActivity  {
                             Getseter.editor.putString("user_id", jsonObject1.optString("id"));
                             Getseter.editor.putString("uname", jsonObject1.optString("fname"));
                             Getseter.editor.putString("emailid", email.getText().toString());
+                            MyPrefrences.setMyRefrel(getApplicationContext(),jsonObject1.optString("referal"));
                             Getseter.editor.commit();
                         }
                     startActivity(new Intent(Login.this,Navigation.class));

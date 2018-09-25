@@ -22,6 +22,7 @@ import com.foodapp.murti.R;
 import com.foodapp.murti.Utils.Api;
 import com.foodapp.murti.Utils.AppController;
 import com.foodapp.murti.Utils.Getseter;
+import com.foodapp.murti.Utils.MyPrefrences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,7 @@ public class SignnUp extends AppCompatActivity {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     Dialog dialog;
     JSONObject jsonObject ;
+    String refValue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,14 @@ public class SignnUp extends AppCompatActivity {
         Getseter.preferences = getApplicationContext().getSharedPreferences("My_prefence", MODE_PRIVATE);
         Getseter.editor =Getseter.preferences.edit();
 
+
+
+        if (MyPrefrences.getRefer(getApplicationContext()).equals("")){
+            refValue="no-referal";
+        }
+        else{
+            refValue=MyPrefrences.getRefer(getApplicationContext());
+        }
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +175,7 @@ public class SignnUp extends AppCompatActivity {
                 params.put("email", email.getText().toString());
                 params.put("mobile",  mobile.getText().toString());
                 params.put("password", password.getText().toString());
+                params.put("refValue", refValue.toString());
 
 
                 return params;

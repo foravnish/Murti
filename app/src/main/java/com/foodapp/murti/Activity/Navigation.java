@@ -23,6 +23,7 @@ import com.foodapp.murti.Fragments.ChangePwd;
 import com.foodapp.murti.Fragments.History;
 import com.foodapp.murti.Fragments.HomeFagment;
 import com.foodapp.murti.Fragments.MyAccounts;
+import com.foodapp.murti.Fragments.ReferAFriend;
 import com.foodapp.murti.Fragments.SubCatagoryFragment;
 import com.foodapp.murti.Fragments.UpdateProfile;
 import com.foodapp.murti.R;
@@ -234,7 +235,17 @@ public class Navigation extends AppCompatActivity
             ft.replace(R.id.content_frame, fragment).addToBackStack(null);
             ft.commit();
 
-        } else if (id == R.id.history) {
+        }
+        else if (id == R.id.referal) {
+            fragment=new ReferAFriend();
+            FragmentManager fm=getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+            ft.replace(R.id.content_frame, fragment).addToBackStack(null);
+            ft.commit();
+
+        }
+        else if (id == R.id.history) {
             fragment=new History();
             FragmentManager fm=getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();

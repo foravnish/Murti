@@ -26,6 +26,8 @@ public class MyPrefrences  {
     static SharedPreferences CityDialog;
     static SharedPreferences Image;
     static SharedPreferences DateTime;
+    static SharedPreferences ReferCode;
+    static SharedPreferences MyReferCode;
     public static SharedPreferences mySharedPreferencesToken;
     public static SharedPreferences PAYMENTID;
 
@@ -61,8 +63,8 @@ public class MyPrefrences  {
         setImage(context, "");
         //   setCityID(context, "");
         //  setCityName(context, "");
-
-
+        setRefer(context, "");
+        setMyRefrel(context, "");
     }
 
 
@@ -368,6 +370,30 @@ public class MyPrefrences  {
     }
 
 
+    public static void setRefer(Context context, String is) {
+        ReferCode = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = ReferCode.edit();
+        editor.putString("REFERCODE", is);
+        editor.commit();
+    }
+
+    public static String getRefer(Context context) {
+        ReferCode = PreferenceManager.getDefaultSharedPreferences(context);
+        return ReferCode.getString("REFERCODE","");
+    }
+
+
+    public static void setMyRefrel(Context context, String is) {
+        MyReferCode = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = MyReferCode.edit();
+        editor.putString("MYREFERCODE", is);
+        editor.commit();
+    }
+
+    public static String getMyRefrel(Context context) {
+        MyReferCode = PreferenceManager.getDefaultSharedPreferences(context);
+        return MyReferCode.getString("MYREFERCODE","");
+    }
 
 
 
