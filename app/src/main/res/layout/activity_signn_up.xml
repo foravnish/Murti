@@ -68,6 +68,7 @@
         android:layout_marginRight="20dp"
         android:padding="12dp"
         android:inputType="phone"
+        android:enabled="false"
         android:textColorHint="@color/colorAccent"
         android:textColor="@color/colorAccent"
         android:background="@drawable/strock_edtttext"

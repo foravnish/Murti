@@ -57,6 +57,7 @@ public class SignnUp extends AppCompatActivity {
         Getseter.preferences = getApplicationContext().getSharedPreferences("My_prefence", MODE_PRIVATE);
         Getseter.editor =Getseter.preferences.edit();
 
+        mobile.setText(getIntent().getStringExtra("mobile"));
 
 
         if (MyPrefrences.getRefer(getApplicationContext()).equals("")){
