@@ -34,5 +34,6 @@ public class Api {
     public static  String forgetPassword      =BaseUrl+"forgetPassword";
     public static  String userChangePassword      =BaseUrl+"userChangePassword";
 
-
+    public static String registrationWithOtp=BaseUrl+"registrationWithOtp";
+    public static String verifyRegistrationOtp=BaseUrl+"verifyRegistrationOtp";
 }

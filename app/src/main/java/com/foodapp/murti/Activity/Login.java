@@ -122,8 +122,11 @@ public class Login extends AppCompatActivity  {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login.this,SignnUp.class));
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+                popRegistration();
+
+//                startActivity(new Intent(Login.this,SignnUp.class));
+//                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
             }
         });
@@ -230,7 +233,7 @@ public class Login extends AppCompatActivity  {
                             Getseter.editor.putString("user_id", jsonObject1.optString("id"));
                             Getseter.editor.putString("uname", jsonObject1.optString("fname"));
                             Getseter.editor.putString("emailid", email.getText().toString());
-                            MyPrefrences.setMyRefrel(getApplicationContext(),jsonObject1.optString("referal"));
+                            MyPrefrences.setMyRefrel(getApplicationContext(),jsonObject1.optString("referer"));
                             Getseter.editor.commit();
                         }
                     startActivity(new Intent(Login.this,Navigation.class));
@@ -560,4 +563,231 @@ public class Login extends AppCompatActivity  {
             }
         }
     };
+
+
+
+
+    private void popRegistration() {
+
+
+        final Dialog dialog2 = new Dialog(Login.this);
+//                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog2.setContentView(R.layout.get_mobile_no);
+        //  dialog2.setCancelable(false);
+
+        final EditText mobile_edit= (EditText) dialog2.findViewById(R.id.mobile_edit);
+      //  mobile_edit.setText(mobile.getText().toString());
+//        TextView recieve= (TextView) dialog2.findViewById(R.id.recieve);
+//        recieve.setText("Sent OTP on "+mob);
+        Button submit2=(Button)dialog2.findViewById(R.id.submit2);
+        submit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (TextUtils.isEmpty(mobile_edit.getText().toString())){
+
+                    Toast.makeText(Login.this, "Please Enter Mobile No.", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+
+                    sedMessageForRegistration(mobile_edit.getText().toString(),dialog2);
+
+                }
+            }
+        });
+
+        dialog2.show();
+
+
+
+    }
+
+    private void sedMessageForRegistration(final String mobileNo, final Dialog dialog) {
+
+        Getseter.showdialog(dialog);
+
+
+        RequestQueue queue = Volley.newRequestQueue(Login.this);
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                Api.registrationWithOtp, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Getseter.exitdialog(dialog);
+                Log.e("fdsfsdfsdgsdfgdsf", "forgetPassword Response: " + response);
+
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    // if (jsonObject.getString("status").equalsIgnoreCase("success")){
+
+                    if (jsonObject.optString("status").equals("success")) {
+
+
+                        popForOTP(mobileNo);
+                        //  dialog.dismiss();
+
+
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),jsonObject.getString("message") , Toast.LENGTH_SHORT).show();
+//                        Util.errorDialog(Login.this,jsonObject.getString("message"));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Getseter.exitdialog(dialog);
+                Log.e("fdgdfgdfgd", "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),"Please Connect to the Internet", Toast.LENGTH_LONG).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Log.e("fgdfgdfgdf","Inside getParams");
+
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("mobile_number", mobileNo);
+
+
+                return params;
+            }
+
+//                        @Override
+//                        public Map<String, String> getHeaders() throws AuthFailureError {
+//                            Log.e("fdgdfgdfgdfg","Inside getHeaders()");
+//                            Map<String,String> headers=new HashMap<>();
+//                            headers.put("Content-Type","application/x-www-form-urlencoded");
+//                            return headers;
+//                        }
+        };
+        // Adding request to request queue
+        queue.add(strReq);
+
+
+    }
+
+    private void popForOTP(final String mob) {
+
+        final Dialog dialog2 = new Dialog(Login.this);
+//                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog2.setContentView(R.layout.setotp);
+        //  dialog2.setCancelable(false);
+
+        otp_edit= (EditText) dialog2.findViewById(R.id.otp_edit);
+        // mobile_edit.setText(mobile.getText().toString());
+        TextView recieve= (TextView) dialog2.findViewById(R.id.recieve);
+        recieve.setText("Sent OTP on "+mob);
+        Button submit2=(Button)dialog2.findViewById(R.id.submit2);
+        submit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (TextUtils.isEmpty(otp_edit.getText().toString())){
+
+                    Toast.makeText(Login.this, "Please Enter OTP.", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+
+                    verfifationOTP(otp_edit.getText().toString(),dialog2,mob);
+
+                }
+            }
+        });
+
+        dialog2.show();
+    }
+
+
+    private void verfifationOTP(final String otp, Dialog dialog2, final String mobileNo) {
+
+
+        Getseter.showdialog(dialog);
+
+        RequestQueue queue = Volley.newRequestQueue(Login.this);
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                Api.verifyRegistrationOtp, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Getseter.exitdialog(dialog);
+                Log.e("fdsfsdfsdgsdfgdsf", "forgetPassword Response: " + response);
+
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    // if (jsonObject.getString("status").equalsIgnoreCase("success")){
+
+                    if (jsonObject.optString("status").equals("success")) {
+
+                        Intent intent=new Intent(Login.this,SignnUp.class);
+                        intent.putExtra("mobile",mobileNo);
+                        startActivity(intent);
+//                        startActivity(new Intent(Login.this,Registration.class));
+
+
+                        //  popForOTP(mobileNo);
+                        //  dialog.dismiss();
+
+
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),jsonObject.getString("message") , Toast.LENGTH_SHORT).show();
+//                        Util.errorDialog(Login.this,jsonObject.getString("message"));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Getseter.exitdialog(dialog);
+                Log.e("fdgdfgdfgd", "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),"Please Connect to the Internet", Toast.LENGTH_LONG).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Log.e("fgdfgdfgdf","Inside getParams");
+
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("mobile_number", mobileNo);
+                params.put("otp", otp.replace(" ",""));
+
+
+                return params;
+            }
+
+//                        @Override
+//                        public Map<String, String> getHeaders() throws AuthFailureError {
+//                            Log.e("fdgdfgdfgdfg","Inside getHeaders()");
+//                            Map<String,String> headers=new HashMap<>();
+//                            headers.put("Content-Type","application/x-www-form-urlencoded");
+//                            return headers;
+//                        }
+        };
+        // Adding request to request queue
+        queue.add(strReq);
+
+
+    }
+
+
+
 }

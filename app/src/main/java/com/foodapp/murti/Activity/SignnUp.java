@@ -175,7 +175,7 @@ public class SignnUp extends AppCompatActivity {
                 params.put("email", email.getText().toString());
                 params.put("mobile",  mobile.getText().toString());
                 params.put("password", password.getText().toString());
-                params.put("refValue", refValue.toString());
+                params.put("referer", refValue.toString());
 
 
                 return params;
