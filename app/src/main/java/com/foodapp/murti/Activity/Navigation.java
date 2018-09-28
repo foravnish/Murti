@@ -25,6 +25,7 @@ import com.foodapp.murti.Fragments.HomeFagment;
 import com.foodapp.murti.Fragments.MyAccounts;
 import com.foodapp.murti.Fragments.ReferAFriend;
 import com.foodapp.murti.Fragments.SubCatagoryFragment;
+import com.foodapp.murti.Fragments.SubCatagoryFragmentPage;
 import com.foodapp.murti.Fragments.UpdateProfile;
 import com.foodapp.murti.R;
 import com.foodapp.murti.Utils.DatabaseHandler;
@@ -111,7 +112,7 @@ public class Navigation extends AppCompatActivity
 
 
                 //searchApi(s);
-                Fragment fragment=new SubCatagoryFragment();
+                Fragment fragment=new SubCatagoryFragmentPage();
                 FragmentManager manager=getSupportFragmentManager();
                 FragmentTransaction ft=manager.beginTransaction();
                 ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);

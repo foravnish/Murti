@@ -265,7 +265,7 @@ public class HomeFagment extends Fragment  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Fragment fragment=new SubCatagoryFragment();
+                Fragment fragment=new SubCatagoryFragmentPage();
                 FragmentManager manager=getFragmentManager();
                 FragmentTransaction ft=manager.beginTransaction();
                 ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);

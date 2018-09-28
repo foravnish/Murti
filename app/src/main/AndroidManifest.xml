@@ -31,9 +31,9 @@
             android:label="@string/title_activity_navigation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name="com.foodapp.murti.Activity.ForgotPassword"
-            android:screenOrientation="portrait" />
+        <!--<activity-->
+            <!--android:name="com.foodapp.murti.Activity.ForgotPassword"-->
+            <!--android:screenOrientation="portrait" />-->
         <activity
             android:name="com.foodapp.murti.Activity.Splash"
             android:screenOrientation="portrait">
