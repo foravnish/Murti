@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -19,6 +20,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.URL;
 
 
 /**
@@ -50,10 +53,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         JSONObject jsonObject = new JSONObject(remoteMessage.getData());
 
 
-
+        try {
+            URL url = new URL(jsonObject.optString("image").toString());
+            Log.d("fgdgdfgd",jsonObject.optString("image").toString());
+            image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+        } catch(IOException e) {
+            System.out.println(e);
+        }
 
         //Todo notification
-
 
             NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
             inboxStyle.addLine(jsonObject.optString("body"));
@@ -66,25 +74,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
 
 
-            notification = mBuilder.setSmallIcon(R.mipmap.new_logo).setTicker("Murti").setWhen(0)
+            notification = mBuilder.setSmallIcon(R.drawable.murti_app_icon).setTicker("Murti").setWhen(0)
                     .setAutoCancel(true)
                     .setContentTitle(jsonObject.optString("title"))
                     .setTicker("Murti")
 //                .setContentIntent(resultPendingIntent)
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .setStyle(inboxStyle)
+                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setWhen(getTimeMilliSec(timeStamp))
-                    .setSmallIcon(R.mipmap.new_logo)
+                    .setSmallIcon(R.drawable.murti_app_icon)
                     .setContentIntent(contentIntent)
                    // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
                     .setContentText(jsonObject.optString("body"))
+
                     .build();
 
 
             NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(0, notification);
-
 
     }
 
