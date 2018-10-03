@@ -52,7 +52,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         JSONObject jsonObject = new JSONObject(remoteMessage.getData());
 
-
         try {
             URL url = new URL(jsonObject.optString("image").toString());
             Log.d("fgdgdfgd",jsonObject.optString("image").toString());
