@@ -33,8 +33,9 @@
                     android:layout_height="130dp"
                     android:scaleType="fitXY"
                     android:padding="5dp"
-                    android:src="@drawable/murti"/>
+                    android:background="@drawable/murti"/>
 
+                <!--android:src="@drawable/murti"-->
                 <TextView
                     android:id="@id/name"
                     android:layout_width="wrap_content"

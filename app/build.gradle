@@ -7,6 +7,7 @@ android {
         applicationId "com.foodapp.murti"
         minSdkVersion 16
         targetSdkVersion 24
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -53,6 +54,6 @@ dependencies {
     compile 'com.payumoney.sdkui:plug-n-play:1.4.0'
     compile 'com.eftimoff:android-viewpager-transformers:1.0.1@aar'
 //    compile 'com.android.support:recyclerview-v7:26.1.0'
-
+    compile 'com.romainpiel.shimmer:library:1.4.0@aar'
 }
 apply plugin: 'com.google.gms.google-services'
