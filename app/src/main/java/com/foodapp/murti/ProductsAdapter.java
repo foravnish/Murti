@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.foodapp.murti.Utils.AppController;
+import com.payumoney.sdkui.ui.utils.RecyclerViewOnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +37,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
         this.products_arrayList = products_arrayList;
         this.context=context;
         this.recyclerView=recyclerView;
+
     }
 
     @Override
@@ -75,6 +78,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
 
 
 
+
     }
 
     @Override
@@ -90,7 +94,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
 
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnItemSelectedListener
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener
     {
         TextView name,price,newprice,off;
         Button button1;
@@ -112,6 +116,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
             button1 = (Button) itemView.findViewById(R.id.button1);
 
             itemView.setTag(itemView);
+
+
+            recyclerView.setOnTouchListener((View.OnTouchListener) this);
+
+        }
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            Log.d("fsdfsdfsdgfsd", "dfgdfg");
+
+            return false;
         }
 
 //        @Override
@@ -123,15 +138,19 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
 //        }
 
 
+//        @Override
+//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//            Log.d("fsdfsdfsdgfsd", String.valueOf("vbgvg"));
+//        }
+//
+//        @Override
+//        public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//        }
 
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            Log.d("fsdfsdfsdgfsd", String.valueOf("vbgvg"));
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
+//        @Override
+//        public void onItemClick(View view, int i) {
+//            Log.d("fsdfsdfsdgfsd", String.valueOf("vbgvg"));
+//        }
     }
 }
