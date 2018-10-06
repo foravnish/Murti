@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
-        android:text="Thank you for Placing Order  at Spinof"
+        android:text="Thank you for Placing Order  at Murti"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#228B22"/>
@@ -54,7 +54,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Team Spinof"
+        android:text="Team Murti"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="@color/colorAccent"/>

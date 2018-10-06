@@ -119,6 +119,8 @@ public class CatagoryViewFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
 
+                Log.d("sdgsdgdf",getArguments().getString("product_id"));
+
                 Log.d("fsddgdgdfgdfgd", String.valueOf(response));
 
                 Getseter.exitdialog(dialog);

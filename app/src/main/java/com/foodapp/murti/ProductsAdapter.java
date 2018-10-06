@@ -20,7 +20,7 @@ import com.payumoney.sdkui.ui.utils.RecyclerViewOnItemClickListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyViewHolder>
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyViewHolder> implements AdapterView.OnClickListener
 {
     private ArrayList<HashMap<String,String>> products_arrayList;
     private LayoutInflater layoutInflater;
@@ -37,7 +37,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
         this.products_arrayList = products_arrayList;
         this.context=context;
         this.recyclerView=recyclerView;
-
+        recyclerView.setOnClickListener(this);
     }
 
     @Override
@@ -91,10 +91,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
         return products_arrayList.size();
     }
 
+    @Override
+    public void onClick(View view) {
+        Log.d("fsdfsdfsdgfsd", "dfgdfg");
+    }
 
 
-
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener
+    class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView name,price,newprice,off;
         Button button1;
@@ -118,16 +121,31 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
             itemView.setTag(itemView);
 
 
-            recyclerView.setOnTouchListener((View.OnTouchListener) this);
+//            recyclerView.setOnTouchListener((View.OnTouchListener) this);
 
         }
 
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            Log.d("fsdfsdfsdgfsd", "dfgdfg");
+//        @Override
+//        public boolean onTouch(View view, MotionEvent motionEvent) {
+//            Log.d("fsdfsdfsdgfsd", "dfgdfg");
+//
+//            return false;
+//        }
 
-            return false;
-        }
+//        @Override
+//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//            Log.d("fsdfsdfsdgfsd", "dfgdfg");
+//        }
+//
+//        @Override
+//        public void onNothingSelected(AdapterView<?> adapterView) {
+
+//        }
+
+//        @Override
+//        public void onClick(View view) {
+//            Log.d("fsdfsdfsdgfsd", "dfgdfg");
+//        }
 
 //        @Override
 //        public void onClick(View view) {

@@ -1,12 +1,17 @@
 package com.foodapp.murti.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -60,6 +65,27 @@ public class SubCatagoryFragmentPage extends Fragment {
         Log.d("sdfsdfsdfsdfsd",getArguments().getString("cat_id"));
 
         getProductData(Api.subCategoriesList+"?catId=" + getArguments().getString("cat_id").toString()+"&page_no=0");
+
+
+        products_rclv.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        Log.d("fsdfsdfsdgfsd", "dfgdfg"+position);
+
+
+                Fragment fragment=new CatagoryViewFragment();
+                FragmentManager manager=getFragmentManager();
+                FragmentTransaction ft=manager.beginTransaction();
+                ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+                Bundle bundle=new Bundle();
+                bundle.putString("product_id",products_arrayList.get(position).get("id").toString());
+                //bundle.putString("product_image",DataList.get(position).getDesc().toString());
+                fragment.setArguments(bundle);
+
+                    }
+                })
+        );
 
 
         products_rclv.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -195,6 +221,55 @@ public class SubCatagoryFragmentPage extends Fragment {
 
     }
 
+
+
+
+    public static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
+        private OnItemClickListener mListener;
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            View childView = rv.findChildViewUnder(e.getX(), e.getY());
+            if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
+                mListener.onItemClick(childView, rv.getChildAdapterPosition(childView));
+            }
+            return false;
+        }
+
+        public interface OnItemClickListener {
+            public void onItemClick(View view, int position);
+        }
+
+        GestureDetector mGestureDetector;
+
+        public RecyclerItemClickListener(Context context, OnItemClickListener listener) {
+            mListener = listener;
+            mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+            });
+        }
+
+//        @Override
+//        public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent e) {
+//            View childView = view.findChildViewUnder(e.getX(), e.getY());
+//            if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
+//                mListener.onItemClick(childView, view.getChildAdapterPosition(childView));
+//            }
+//            return false;
+//        }
+
+        @Override
+        public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) {
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    }
 
 
 }

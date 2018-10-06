@@ -16,7 +16,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -135,6 +137,8 @@ public class HomeFagment extends Fragment  {
 
         //TODO Tranding
         getTrading();
+
+
         // END Tranding
 
 
@@ -160,6 +164,27 @@ public class HomeFagment extends Fragment  {
 
         viewPager.setPageTransformer(true, new ForegroundToBackgroundTransformer());
         Getseter.showdialog(dialog);
+
+
+        mRecyclerView.addOnItemTouchListener(
+                new SubCatagoryFragmentPage.RecyclerItemClickListener(getActivity(), new SubCatagoryFragmentPage.RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        Log.d("fsdfsdfsdgfsd", "dfgdfg"+position);
+
+
+                        Fragment fragment=new CatagoryViewFragment();
+                        FragmentManager manager=getFragmentManager();
+                        FragmentTransaction ft=manager.beginTransaction();
+                        ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+                        Bundle bundle=new Bundle();
+                        bundle.putString("product_id",AllProducts.get(position).get("id").toString());
+                        //bundle.putString("product_image",DataList.get(position).getDesc().toString());
+                        fragment.setArguments(bundle);
+
+                    }
+                })
+        );
 
 
         JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET,Api.homeBannerList , null, new Response.Listener<JSONObject>() {
@@ -318,7 +343,7 @@ public class HomeFagment extends Fragment  {
     private void getTrading() {
         Getseter.showdialog(dialog);
         JsonObjectRequest jsonObjReqOffers = new JsonObjectRequest(Request.Method.GET,
-                Api.categoryList, null, new Response.Listener<JSONObject>() {
+                Api.trendingList, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -330,7 +355,6 @@ public class HomeFagment extends Fragment  {
 //                    String name = response.getString("name");
                     HashMap<String,String> hashMap = null;
                     if (response.getString("status").equalsIgnoreCase("success")){
-
 
                         AllProducts.clear();
                         JSONArray jsonArray=response.getJSONArray("message");
@@ -345,8 +369,8 @@ public class HomeFagment extends Fragment  {
 
                             HashMap<String,String> map=new HashMap<>();
                             map.put("id", jsonObject.optString("id"));
-                            map.put("category", jsonObject.optString("category"));
-                            map.put("photo", jsonObject.optString("photo"));
+                            map.put("category", jsonObject.optString("product_name"));
+                            map.put("photo", jsonObject.optString("upload_images"));
 
 
 
@@ -702,5 +726,53 @@ public class HomeFagment extends Fragment  {
 
     }
 
+
+
+    public static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
+        private SubCatagoryFragmentPage.RecyclerItemClickListener.OnItemClickListener mListener;
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            View childView = rv.findChildViewUnder(e.getX(), e.getY());
+            if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
+                mListener.onItemClick(childView, rv.getChildAdapterPosition(childView));
+            }
+            return false;
+        }
+
+        public interface OnItemClickListener {
+            public void onItemClick(View view, int position);
+        }
+
+        GestureDetector mGestureDetector;
+
+        public RecyclerItemClickListener(Context context, SubCatagoryFragmentPage.RecyclerItemClickListener.OnItemClickListener listener) {
+            mListener = listener;
+            mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+            });
+        }
+
+//        @Override
+//        public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent e) {
+//            View childView = view.findChildViewUnder(e.getX(), e.getY());
+//            if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
+//                mListener.onItemClick(childView, view.getChildAdapterPosition(childView));
+//            }
+//            return false;
+//        }
+
+        @Override
+        public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) {
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    }
 
 }

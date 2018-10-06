@@ -36,4 +36,5 @@ public class Api {
 
     public static String registrationWithOtp=BaseUrl+"registrationWithOtp";
     public static String verifyRegistrationOtp=BaseUrl+"verifyRegistrationOtp";
+    public static String trendingList=BaseUrl+"trendingList";
 }
