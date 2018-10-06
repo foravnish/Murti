@@ -112,7 +112,7 @@ public class Navigation extends AppCompatActivity
 
 
                 //searchApi(s);
-                Fragment fragment=new SubCatagoryFragmentPage();
+                Fragment fragment=new SubCatagoryFragment();
                 FragmentManager manager=getSupportFragmentManager();
                 FragmentTransaction ft=manager.beginTransaction();
                 ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);

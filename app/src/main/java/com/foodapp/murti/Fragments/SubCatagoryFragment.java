@@ -81,12 +81,12 @@ public class SubCatagoryFragment extends Fragment {
 //        adapter2=new Adapter2();
         //adapter2= new Adapter2();
 
-        Getseter.showdialog(dialog);
+        //Getseter.showdialog(dialog);
 
 
         if (getArguments().getString("type").equalsIgnoreCase("search")){
 
-           // searchApi();
+            searchApi();
         }
 
         else if (getArguments().getString("type").equalsIgnoreCase("normal")) {
@@ -163,60 +163,62 @@ public class SubCatagoryFragment extends Fragment {
         return view;
     }
 
-//    private void searchApi() {
-//
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Api.searchSubCat + "?keyword=" + getArguments().getString("query").toString(), null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//
-//                DataList.clear();
-//                Getseter.exitdialog(dialog);
-//                if (response.optString("status").equalsIgnoreCase("success")) {
-//                    jsonArray = response.optJSONArray("message");
-//
-//                    try {
-//                        for (int i = 0; i < jsonArray.length(); i++) {
-//                            jsonObject = jsonArray.optJSONObject(i);
-//
-//                            JSONArray jsonArray1 = jsonObject.optJSONArray("sizes");
-//                            //DataList2.clear();
-//                            Log.d("fdgdgdfgd", jsonArray1.toString());
-//                            for (int j = 0; j < jsonArray1.length(); j++) {
-//                                jsonObject1 = jsonArray1.optJSONObject(j);
-//
-//                                Log.d("gdfgdfgdfghdfgs", jsonArray1.toString());
-//                                Log.d("fdgdfdgdfggdfgd", jsonObject1.optString("sell_price"));
-//
-//                                DataList.add(new Getseter(jsonObject.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("photo"), jsonObject1.optString("id"), jsonObject1.optString("psize_id"), jsonObject1.optString("size"), jsonObject1.optString("mrp_price"), jsonObject1.optString("discount"), jsonObject1.optString("sell_price"), jsonObject1.optString("psize_image")));
-//
-//                                //DataList2.add(new Getseter(jsonObject1.optString("product_id"),jsonObject1.optString("psize_id"),jsonObject1.optString("size"),jsonObject1.optString("mrp_price"),jsonObject1.optString("discount"),jsonObject1.optString("sell_price"),jsonObject1.optString("psize_image")));
-//
-//
-//                            }
-//                            //gridview2.setAdapter(adapter2);
-//                            gridview.setAdapter(adapter);
-//
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                else{
-//                    Toast.makeText(getActivity(), "No product found...", Toast.LENGTH_SHORT).show();
-//                }
-//
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getActivity(), "Please connect to the internet.", Toast.LENGTH_SHORT).show();
-//                Getseter.exitdialog(dialog);
-//            }
-//        });
-//        AppController.getInstance().addToRequestQueue(jsonObjectRequest);
-//
-//    }
+    private void searchApi() {
+        Log.d("Sgdfgdfgdfgdfg",getArguments().getString("query"));
+        Getseter.showdialog(dialog);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Api.searchSubCat + "?keyword=" + getArguments().getString("query").toString(), null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                DataList.clear();
+                Getseter.exitdialog(dialog);
+                if (response.optString("status").equalsIgnoreCase("success")) {
+                    jsonArray = response.optJSONArray("message");
+
+                    Log.d("dfgdfgsdfgsdfgds", String.valueOf(response));
+                    try {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            jsonObject = jsonArray.optJSONObject(i);
+
+                            JSONArray jsonArray1 = jsonObject.optJSONArray("sizes");
+                            //DataList2.clear();
+                            Log.d("fdgdgdfgd", jsonArray1.toString());
+                            for (int j = 0; j < jsonArray1.length(); j++) {
+                                JSONObject jsonObject1 = jsonArray1.optJSONObject(j);
+
+                                Log.d("gdfgdfgdfghdfgs", jsonArray1.toString());
+                                Log.d("fdgdfdgdfggdfgd", jsonObject1.optString("sell_price"));
+
+                                DataList.add(new Getseter(jsonObject.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("photo"), jsonObject1.optString("id"), jsonObject1.optString("psize_id"), jsonObject1.optString("size"), jsonObject1.optString("mrp_price"), jsonObject1.optString("discount"), jsonObject1.optString("sell_price"), jsonObject1.optString("psize_image")));
+
+                                //DataList2.add(new Getseter(jsonObject1.optString("product_id"),jsonObject1.optString("psize_id"),jsonObject1.optString("size"),jsonObject1.optString("mrp_price"),jsonObject1.optString("discount"),jsonObject1.optString("sell_price"),jsonObject1.optString("psize_image")));
+
+
+                            }
+                            //gridview2.setAdapter(adapter2);
+                            gridview.setAdapter(adapter);
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    Toast.makeText(getActivity(), "No product found...", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "Please connect to the internet.", Toast.LENGTH_SHORT).show();
+                Getseter.exitdialog(dialog);
+            }
+        });
+        AppController.getInstance().addToRequestQueue(jsonObjectRequest);
+
+    }
 
     class  Adapter extends BaseAdapter {
 
@@ -324,10 +326,10 @@ public class SubCatagoryFragment extends Fragment {
 
             name.setText(DataList.get(position).getName().toString());
            // size.setText(DataList.get(position).getCdate().toString());
-           // price.setText("₹ "+DataList.get(position).getUdate().toString());
-          //  off.setText("₹ "+DataList.get(position).getImg2().toString()+" OFF");
-          //  newprice.setText("₹ "+DataList.get(position).getCdate2().toString());
-          //  price.setPaintFlags(price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            price.setText("₹ "+DataList.get(position).getUdate().toString());
+            off.setText("₹ "+DataList.get(position).getImg2().toString()+" OFF");
+            newprice.setText("₹ "+DataList.get(position).getCdate2().toString());
+            price.setPaintFlags(price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
             //Log.d("fdgdgdfg",DataList.get(position).getCdate().toString());
             image.setImageUrl(DataList.get(position).getDesc().toLowerCase(),imageLoader);
