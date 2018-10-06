@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <android.support.v7.widget.CardView
@@ -32,13 +32,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
                     android:scaleType="fitXY"
-                    android:padding="5dp"
-                    />
+                    android:padding="5dp"/>
+
+                <!--android:src="@drawable/murti"-->
                 <TextView
                     android:id="@id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
                     android:singleLine="true"
                     android:text="Name"/>
 
@@ -66,14 +67,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        android:textSize="12dp"
+                        android:textSize="16dp"
                         android:text="price"/>
                     <TextView
                         android:id="@+id/newprice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        android:textSize="12dp"
+                        android:textSize="18dp"
                         android:layout_alignParentRight="true"
                         android:textColor="@color/colorAccent"
                         android:textStyle="bold"
@@ -86,7 +87,7 @@
                     android:singleLine="true"
                     android:background="#fb0"
                     android:paddingLeft="10dp"
-                    android:textSize="12dp"
+                    android:textSize="18dp"
                     android:paddingRight="10dp"
                     android:layout_marginBottom="5dp"
                     android:textColor="#fff"

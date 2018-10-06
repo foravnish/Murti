@@ -45,7 +45,7 @@ public class SubCatagoryFragmentPage extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private boolean isLoading = false;
     ProductsAdapter productsAdapter;
-
+    JSONObject jsonObject;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class SubCatagoryFragmentPage extends Fragment {
         Log.d("sdfsdfsdfsdfsd",getArguments().getString("cat_id"));
 
         getProductData(Api.subCategoriesList+"?catId=" + getArguments().getString("cat_id").toString()+"&page_no=0");
+
 
         products_rclv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -117,13 +118,29 @@ public class SubCatagoryFragmentPage extends Fragment {
 
                             if (products_jsonObject.has("id")) {
                                 if (!(products_jsonObject.isNull("id"))) {
+
+
+                                    Log.d("dfgdfgdfgdfvbcbcvbcgdf","true1");
+                                    JSONArray jsonArraySizes=products_jsonObject.getJSONArray("sizes");
+                                    Log.d("dfgdfgdfgdfvbcbcvbcgdf","true2");
+                                    if (jsonArraySizes.length()!=0) {
+                                        jsonObject = jsonArraySizes.getJSONObject(0);
+                                        Log.d("fdgdfdgdfggdfgd", jsonObject.optString("sell_price"));
+                                        map.put("mrp_price", jsonObject.getString("mrp_price"));
+                                        map.put("sell_price", jsonObject.getString("sell_price"));
+                                        map.put("discount", jsonObject.getString("discount"));
+                                    }
+                                    Log.d("dfgdfgdfgdfvbcbcvbcgdf","true3");
+                                    Log.d("gdfgdfgdfghdfgs", jsonArraySizes.toString());
+
+
 //                                        products_pojo.setTitle(products_jsonObject.getString("name"));
                                     map.put("id", products_jsonObject.getString("id"));
                                     map.put("product_name", products_jsonObject.getString("product_name"));
                                     map.put("product_code", products_jsonObject.getString("product_code"));
                                     map.put("photo", products_jsonObject.getString("photo"));
-                                    map.put("photo", products_jsonObject.getString("photo"));
                                     map.put("description", products_jsonObject.getString("description"));
+
                                 }
                             }
                             products_arrayList.add(map);
@@ -131,7 +148,7 @@ public class SubCatagoryFragmentPage extends Fragment {
 //                            mactView.updateData(products_arrayList);
 
                         if (pageIndex == 0) {
-                            productsAdapter = new ProductsAdapter(getActivity(), products_arrayList);
+                            productsAdapter = new ProductsAdapter(getActivity(), products_arrayList,products_rclv);
 
                             products_rclv.setAdapter(productsAdapter);
 

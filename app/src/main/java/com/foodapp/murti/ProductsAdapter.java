@@ -2,15 +2,20 @@ package com.foodapp.murti;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.foodapp.murti.Utils.AppController;
+import com.payumoney.sdkui.ui.utils.RecyclerViewOnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,9 +24,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
 {
     private ArrayList<HashMap<String,String>> products_arrayList;
     private LayoutInflater layoutInflater;
+    Context context;
+    RecyclerView recyclerView;
 
-
-    public ProductsAdapter(Context context, ArrayList<HashMap<String,String>> products_arrayList)
+    public ProductsAdapter(Context context, ArrayList<HashMap<String,String>> products_arrayList,RecyclerView recyclerView)
     {
         /*
          * RecyclerViewAdapter Constructor to Initialize Data which we get from RecyclerViewFragment
@@ -29,6 +35,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
 
         layoutInflater = LayoutInflater.from(context);
         this.products_arrayList = products_arrayList;
+        this.context=context;
+        this.recyclerView=recyclerView;
+
     }
 
     @Override
@@ -60,8 +69,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
 //                holder.textview_product.setText(cropName);
 //            }
         holder.name.setText(products_arrayList.get(position).get("product_name"));
+        holder.price.setText("₹ "+products_arrayList.get(position).get("mrp_price"));
+        holder.newprice.setText("₹ "+products_arrayList.get(position).get("sell_price"));
+        holder.off.setText(products_arrayList.get(position).get("discount"));
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         holder.imageView.setImageUrl(products_arrayList.get(position).get("photo"),imageLoader);
+
+
+
+
+
     }
 
     @Override
@@ -75,7 +92,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder
+
+
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener
     {
         TextView name,price,newprice,off;
         Button button1;
@@ -96,8 +115,42 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
             off = (TextView) itemView.findViewById(R.id.off);
             button1 = (Button) itemView.findViewById(R.id.button1);
 
-
             itemView.setTag(itemView);
+
+
+            recyclerView.setOnTouchListener((View.OnTouchListener) this);
+
         }
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            Log.d("fsdfsdfsdgfsd", "dfgdfg");
+
+            return false;
+        }
+
+//        @Override
+//        public void onClick(View view) {
+//           // int position = recyclerView.getChildAdapterPosition(view);
+//          //  int position = recyclerView.getChildLayoutPosition(view);
+//
+//            Log.d("fsdfsdfsdgfsd", String.valueOf("vbgvg"));
+//        }
+
+
+//        @Override
+//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//            Log.d("fsdfsdfsdgfsd", String.valueOf("vbgvg"));
+//        }
+//
+//        @Override
+//        public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//        }
+
+//        @Override
+//        public void onItemClick(View view, int i) {
+//            Log.d("fsdfsdfsdgfsd", String.valueOf("vbgvg"));
+//        }
     }
 }
