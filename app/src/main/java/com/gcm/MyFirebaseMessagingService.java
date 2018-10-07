@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.foodapp.murti.Activity.MainActivity;
+import com.foodapp.murti.Activity.Navigation;
 import com.foodapp.murti.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -68,8 +69,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                     getApplicationContext());
 
-            Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
-            notificationIntent.putExtra("userType","");
+            Intent notificationIntent = new Intent(getApplicationContext(), Navigation.class);
+           // notificationIntent.putExtra("userType","");
             PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
 
 

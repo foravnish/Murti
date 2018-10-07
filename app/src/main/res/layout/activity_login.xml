@@ -38,7 +38,7 @@
         android:textColorHint="@color/colorAccent"
         android:textColor="@color/colorAccent"
         android:background="@drawable/strock_edtttext"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         android:hint="Email"/>
 
     <EditText

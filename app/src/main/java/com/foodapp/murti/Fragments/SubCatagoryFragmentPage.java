@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -178,8 +179,11 @@ public class SubCatagoryFragmentPage extends Fragment {
 
                             products_rclv.setAdapter(productsAdapter);
 
+                            RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+                           // products_rclv.setLayoutManager(mLayoutManager);
+
                             linearLayoutManager = new LinearLayoutManager(getActivity());
-                            products_rclv.setLayoutManager(linearLayoutManager);
+                            products_rclv.setLayoutManager(mLayoutManager);
                         } else {
                             isLoading = false;
                             if (productsAdapter != null) {

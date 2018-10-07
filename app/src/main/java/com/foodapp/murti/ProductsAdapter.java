@@ -1,6 +1,7 @@
 package com.foodapp.murti;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -74,7 +75,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
         holder.off.setText(products_arrayList.get(position).get("discount"));
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         holder.imageView.setImageUrl(products_arrayList.get(position).get("photo"),imageLoader);
-
+        holder.price.setPaintFlags(holder.price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
 
