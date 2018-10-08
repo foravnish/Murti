@@ -179,11 +179,11 @@ public class SubCatagoryFragmentPage extends Fragment {
 
                             products_rclv.setAdapter(productsAdapter);
 
-                            RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+//                            RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
                            // products_rclv.setLayoutManager(mLayoutManager);
 
                             linearLayoutManager = new LinearLayoutManager(getActivity());
-                            products_rclv.setLayoutManager(mLayoutManager);
+                            products_rclv.setLayoutManager(linearLayoutManager);
                         } else {
                             isLoading = false;
                             if (productsAdapter != null) {
