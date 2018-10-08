@@ -74,7 +74,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
 
 
-            notification = mBuilder.setSmallIcon(R.drawable.murti_app_icon).setTicker("Murti").setWhen(0)
+            notification = mBuilder.setSmallIcon(R.mipmap.new_logo).setTicker("Murti").setWhen(0)
                     .setAutoCancel(true)
                     .setContentTitle(jsonObject.optString("title"))
                     .setTicker("Murti")
@@ -83,7 +83,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setStyle(inboxStyle)
                     .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setWhen(getTimeMilliSec(timeStamp))
-                    .setSmallIcon(R.drawable.murti_app_icon)
+                   // .setSmallIcon(R.mipmap.new_logo)
                     .setContentIntent(contentIntent)
                    // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))

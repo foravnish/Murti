@@ -370,7 +370,7 @@ public class HomeFagment extends Fragment  {
                             HashMap<String,String> map=new HashMap<>();
                             map.put("id", jsonObject.optString("id"));
                             map.put("category", jsonObject.optString("product_name"));
-                            map.put("photo", jsonObject.optString("upload_images"));
+                            map.put("photo", jsonObject.optString("photo"));
 
 
 
