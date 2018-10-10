@@ -65,6 +65,8 @@ public class History extends Fragment {
         Getseter.showdialog(dialog);
 
 //
+        getActivity().setTitle("History");
+
 //        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?order_history=1&user_id="+Getseter.preferences.getString("user_id",""), null, new Response.Listener<JSONObject>() {
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Api.orderHistory+"?userId="+Getseter.preferences.getString("user_id",""), null, new Response.Listener<JSONObject>() {
             @Override

@@ -402,10 +402,10 @@ public class Delivery extends Fragment {
             public void onClick(View v) {
 
                 if (!Getseter.preferences.getString("fname","").toString().equals("") &&
-                        !Getseter.preferences.getString("lname","").toString().equals("") &&
+                     //   !Getseter.preferences.getString("lname","").toString().equals("") &&
                         !Getseter.preferences.getString("house_no","").toString().equals("") &&
                         !Getseter.preferences.getString("street","").toString().equals("") &&
-                        !Getseter.preferences.getString("area","").toString().equals("") &&
+                       // !Getseter.preferences.getString("area","").toString().equals("") &&
                         !Getseter.preferences.getString("pincode","").toString().equals("") &&
                         !Getseter.preferences.getString("city_name","").toString().equals("") &&
                         !Getseter.preferences.getString("mobile","").toString().equals("")){

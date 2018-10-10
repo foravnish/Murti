@@ -126,6 +126,7 @@ public class HomeFagment extends Fragment  {
         AllProducts = new ArrayList<>();
 
 
+        getActivity().setTitle("Murti Foods");
 
 
         position=0;

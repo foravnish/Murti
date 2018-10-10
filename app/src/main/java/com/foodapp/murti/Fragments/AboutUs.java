@@ -52,6 +52,7 @@ public class AboutUs extends Fragment {
         dialog.setCancelable(false);
         Getseter.showdialog(dialog);
 
+        getActivity().setTitle("About us");
         //JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?getAboutUs=1", null, new Response.Listener<JSONObject>() {
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Api.aboutUs, null, new Response.Listener<JSONObject>() {
             @Override

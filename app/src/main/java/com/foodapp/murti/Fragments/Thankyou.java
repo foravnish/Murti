@@ -27,6 +27,7 @@ public class Thankyou extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_thankyou, container, false);
 
+
             TextView textDialog1 = (TextView) view.findViewById(R.id.textDialog1);
             TextView textDialog2 = (TextView) view.findViewById(R.id.textDialog2);
             TextView email = (TextView) view.findViewById(R.id.email);

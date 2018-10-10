@@ -49,6 +49,8 @@ public class TermsAndConditions extends Fragment {
         dialog.setCancelable(false);
         Getseter.showdialog(dialog);
 
+        getActivity().setTitle("Terms And Condition");
+
 //        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?getTerms=1", null, new Response.Listener<JSONObject>() {
 //            @Override
 //            public void onResponse(JSONObject response) {

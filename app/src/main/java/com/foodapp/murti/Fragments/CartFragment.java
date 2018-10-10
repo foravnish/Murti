@@ -67,7 +67,7 @@ public class CartFragment extends Fragment {
 
         adapter=new Adapter();
 
-
+        getActivity().setTitle("Cart");
        // Toast.makeText(getActivity(), DataList.size()+"", Toast.LENGTH_SHORT).show();
 
         if (DataList.size()==0){

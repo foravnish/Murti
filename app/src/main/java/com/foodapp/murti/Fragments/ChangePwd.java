@@ -55,7 +55,7 @@ public class ChangePwd extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
-
+        getActivity().setTitle("Change Password");
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

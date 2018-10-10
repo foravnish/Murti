@@ -22,6 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 
@@ -35,7 +37,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     //  private NotificationUtils notificationUtils;
 
-    Bitmap image;
+    Bitmap image,bitmap;
 
 
     @Override
@@ -61,6 +63,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             System.out.println(e);
         }
 
+        bitmap = getBitmapfromUrl(jsonObject.optString("image").toString());
+
         //Todo notification
 
             NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
@@ -81,10 +85,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                .setContentIntent(resultPendingIntent)
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .setStyle(inboxStyle)
-                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
+                   // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setWhen(getTimeMilliSec(timeStamp))
-                   // .setSmallIcon(R.mipmap.new_logo)
+//                    .setSmallIcon(R.mipmap.new_logo)
                     .setContentIntent(contentIntent)
+                    .setStyle(new NotificationCompat.BigPictureStyle()
+                            .bigPicture(bitmap))/*Notification with Image*/
                    // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
                     .setContentText(jsonObject.optString("body"))
@@ -98,7 +104,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
+    public Bitmap getBitmapfromUrl(String imageUrl) {
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(input);
+            return bitmap;
 
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+
+        }
+    }
 
 //    private void handleNotification(String message) {
 //        if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {

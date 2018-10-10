@@ -75,6 +75,9 @@ public class UpdateProfile extends Fragment {
 //        phone=(EditText)view.findViewById(R.id.phone);
         submit=(Button) view.findViewById(R.id.submit);
 
+        getActivity().setTitle("Update Profile");
+
+
         dialog=new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -305,7 +308,7 @@ public class UpdateProfile extends Fragment {
                         params.put("lname", lname.getText().toString());
                         params.put("house_no", house.getText().toString());
                         params.put("street", street.getText().toString());
-                        params.put("complex", complex.getText().toString());
+                        params.put("complex", "com");
                         params.put("landmark", landmark.getText().toString());
                         params.put("pincode", pincode.getText().toString());
                         params.put("mobile", mobile.getText().toString());

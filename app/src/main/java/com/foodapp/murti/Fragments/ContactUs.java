@@ -49,6 +49,7 @@ public class ContactUs extends Fragment {
 //                .findFragmentById(R.id.map);
 //        mapFragment.getMapAsync(this);
 
+        getActivity().setTitle("Contact Us");
         email=(TextView)view.findViewById(R.id.email);
         fax=(TextView)view.findViewById(R.id.fax);
         number=(TextView)view.findViewById(R.id.number);

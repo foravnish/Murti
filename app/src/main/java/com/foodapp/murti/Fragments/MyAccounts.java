@@ -33,6 +33,7 @@ public class MyAccounts extends Fragment {
         contact=(LinearLayout)view.findViewById(R.id.contact);
         about=(LinearLayout)view.findViewById(R.id.about);
 
+        getActivity().setTitle("My Accounts");
         account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -84,15 +84,12 @@ public class Navigation extends AppCompatActivity
 
         //toolbar.getNavigationIcon().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
-        try {
+
             name.setText(Getseter.preferences.getString("uname","").toUpperCase());
             email.setText(Getseter.preferences.getString("emailid",""));
 
             Log.d("sdfgdgdfhbdfh",Getseter.preferences.getString("city_id",""));
             Log.d("sdfgdgdfhbdfh",Getseter.preferences.getString("city_name",""));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         this.setTitle("Murti");
 

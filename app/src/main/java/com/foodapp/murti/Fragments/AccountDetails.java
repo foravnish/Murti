@@ -62,6 +62,7 @@ public class AccountDetails extends Fragment {
         dialog.setCancelable(false);
         Getseter.showdialog(dialog);
 
+        getActivity().setTitle("Account Details");
         Log.d("sdfsdfsdfsdfsd",Getseter.preferences.getString("user_id",""));
 //        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?getUserDetails=1&user_id="+Getseter.preferences.getString("user_id",""), null, new Response.Listener<JSONObject>() {
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Api.getUserDetails+"?userId="+Getseter.preferences.getString("user_id",""), null, new Response.Listener<JSONObject>() {
