@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 
 /**
@@ -84,7 +85,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setTicker("Murti")
 //                .setContentIntent(resultPendingIntent)
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                    .setStyle(inboxStyle)
+                   // .setStyle(inboxStyle)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(jsonObject.optString("body")))
                    // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setWhen(getTimeMilliSec(timeStamp))
                     .setSmallIcon(R.mipmap.new_logo)
@@ -93,13 +95,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             .bigPicture(bitmap))/*Notification with Image*/
                    // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
-                    .setContentText(jsonObject.optString("body"))
+                   // .setContentText(jsonObject.optString("body"))
 
                     .build();
 
-
+            Random random = new Random();
             NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(0, notification);
+            notificationManager.notify(random.nextInt(), notification);
 
     }
 
