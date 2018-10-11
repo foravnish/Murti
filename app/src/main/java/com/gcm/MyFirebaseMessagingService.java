@@ -87,7 +87,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setStyle(inboxStyle)
                    // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
 //                .setWhen(getTimeMilliSec(timeStamp))
-//                    .setSmallIcon(R.mipmap.new_logo)
+                    .setSmallIcon(R.mipmap.new_logo)
                     .setContentIntent(contentIntent)
                     .setStyle(new NotificationCompat.BigPictureStyle()
                             .bigPicture(bitmap))/*Notification with Image*/
