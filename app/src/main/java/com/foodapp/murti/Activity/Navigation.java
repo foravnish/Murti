@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -63,6 +64,8 @@ public class Navigation extends AppCompatActivity
 
         textOne=(TextView)findViewById(R.id.textOne);
         simpleSearchView=(SearchView) findViewById(R.id.simpleSearchView);
+
+
 
         db = new DatabaseHandler(getApplicationContext());
         DataList=db.getAllCatagory();
@@ -119,6 +122,8 @@ public class Navigation extends AppCompatActivity
                 bundle.putString("type","search");
                 bundle.putString("query",s);
                 fragment.setArguments(bundle);
+
+                simpleSearchView.clearFocus();
 
                 return false;
             }

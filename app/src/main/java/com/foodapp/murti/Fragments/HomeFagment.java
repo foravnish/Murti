@@ -359,12 +359,12 @@ public class HomeFagment extends Fragment  {
 
                         AllProducts.clear();
                         JSONArray jsonArray=response.getJSONArray("message");
-                        int len=5;
-                        if (jsonArray.length()<=5){
-                            len=jsonArray.length();
-                        }
+//                        int len=5;
+//                        if (jsonArray.length()<=5){
+//                            len=jsonArray.length();
+//                        }
 
-                        for (int i=0;i<len;i++) {
+                        for (int i=0;i<jsonArray.length();i++) {
                            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 
@@ -373,53 +373,12 @@ public class HomeFagment extends Fragment  {
                             map.put("category", jsonObject.optString("product_name"));
                             map.put("photo", jsonObject.optString("photo"));
 
-
-
-//                                map.put("heading", jsonObject.optString("heading"));
-//                                map.put("description", jsonObject.optString("description"));
-//                                map.put("offer_type", jsonObject.optString("offer_type"));
-//                                map.put("discount", jsonObject.optString("discount"));
-//                                map.put("actual_price", jsonObject.optString("actual_price"));
-//                                map.put("offer_price", jsonObject.optString("offer_price"));
-//                                map.put("coupon_code", jsonObject.optString("coupon_code"));
-//                                map.put("offer_from", jsonObject.optString("offer_from"));
-//                                map.put("offer_to", jsonObject.optString("offer_to"));
-//                                map.put("image", jsonObject.optString("image"));
-//                                map.put("posted_date", jsonObject.optString("posted_date"));
-//
-//                             jsonObject2=jsonObject.getJSONObject("comapnyDetails");
-//
-//                            map.put("new_keywords", jsonObject2.optString("new_keywords"));
-//                            map.put("company_name", jsonObject2.optString("company_name"));
-//                            map.put("address", jsonObject2.optString("address"));
-//                            map.put("c1_mobile1", jsonObject2.optString("c1_mobile1"));
-//                            map.put("c1_fname", jsonObject2.optString("c1_fname")+" "+jsonObject2.optString("c1_mname")+" "+jsonObject2.optString("c1_lname"));
-
-
                             mAdapter = new HLVAdapter(getActivity());
 
                             mRecyclerView.setAdapter(mAdapter);
                             mAdapter.notifyDataSetChanged();
                             AllProducts.add(map);
 
-
-//
-////                            hashMap = new HashMap<>();
-////                            hashMap.put("id",jsonObject.optString("id"));
-////                            hashMap.put("cat_id",jsonObject.optString("cat_id"));
-////                            hashMap.put("eventName",jsonObject.optString("eventName"));
-////                            hashMap.put("photo",jsonObject.optString("photo"));
-////
-////                            viewPager.setAdapter(mCustomPagerAdapter);
-////                            indicator.setViewPager(viewPager);
-////                            mCustomPagerAdapter.notifyDataSetChanged();
-
-
-                            //AllEvents.add(new Const(jsonObject.optString("id"),jsonObject.optString("eventVen"),jsonObject.optString("eventName"),jsonObject.optString("photo"),jsonObject.optString("eventDate"),jsonObject.optString("meta_description"),jsonObject.optString("orgBy")));
-
-//                            viewPager.setAdapter(mCustomPagerAdapter);
-//                            indicator.setViewPager(viewPager);
-//                            //mCustomPagerAdapter.notifyDataSetChanged();
 
                         }
                     }
