@@ -79,10 +79,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
 
 
-            notification = mBuilder.setSmallIcon(R.mipmap.new_logo_noti).setTicker("Murti").setWhen(0)
+            notification = mBuilder.setSmallIcon(R.mipmap.new_logo_noti).setTicker(jsonObject.optString("title")).setWhen(0)
                     .setAutoCancel(true)
                     .setContentTitle(jsonObject.optString("title"))
-                    .setTicker("Murti")
+                    .setTicker(jsonObject.optString("title"))
 //                .setContentIntent(resultPendingIntent)
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                    // .setStyle(inboxStyle)
