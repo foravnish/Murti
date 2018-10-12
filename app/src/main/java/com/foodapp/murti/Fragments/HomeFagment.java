@@ -167,25 +167,26 @@ public class HomeFagment extends Fragment  {
         Getseter.showdialog(dialog);
 
 
-        mRecyclerView.addOnItemTouchListener(
-                new SubCatagoryFragmentPage.RecyclerItemClickListener(getActivity(), new SubCatagoryFragmentPage.RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        // TODO Handle item click
-                        Log.d("fsdfsdfsdgfsd", "dfgdfg"+position);
+//        mRecyclerView.addOnItemTouchListener(
+//                new SubCatagoryFragmentPage.RecyclerItemClickListener(getActivity(), new SubCatagoryFragmentPage.RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override public void onItemClick(View view, int position) {
+//                        // TODO Handle item click
+//                        Log.d("fsdfsdfsdgfsd", "dfgdfg"+position);
+//
+//
+//                        Fragment fragment=new CatagoryViewFragment();
+//                        FragmentManager manager=getFragmentManager();
+//                        FragmentTransaction ft=manager.beginTransaction();
+//                        ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+//                        Bundle bundle=new Bundle();
+//                        bundle.putString("product_id",AllProducts.get(position).get("id").toString());
+//                        //bundle.putString("product_image",DataList.get(position).getDesc().toString());
+//                        fragment.setArguments(bundle);
+//
+//                    }
+//                })
+//        );
 
-
-                        Fragment fragment=new CatagoryViewFragment();
-                        FragmentManager manager=getFragmentManager();
-                        FragmentTransaction ft=manager.beginTransaction();
-                        ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
-                        Bundle bundle=new Bundle();
-                        bundle.putString("product_id",AllProducts.get(position).get("id").toString());
-                        //bundle.putString("product_image",DataList.get(position).getDesc().toString());
-                        fragment.setArguments(bundle);
-
-                    }
-                })
-        );
 
 
         JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET,Api.homeBannerList , null, new Response.Listener<JSONObject>() {
@@ -321,7 +322,7 @@ public class HomeFagment extends Fragment  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Fragment fragment=new SubCatagoryFragmentPage();
+                Fragment fragment=new SubCatagoryFragment();
                 FragmentManager manager=getFragmentManager();
                 FragmentTransaction ft=manager.beginTransaction();
                 ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
