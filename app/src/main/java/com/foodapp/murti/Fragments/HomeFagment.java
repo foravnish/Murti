@@ -167,25 +167,25 @@ public class HomeFagment extends Fragment  {
         Getseter.showdialog(dialog);
 
 
-//        mRecyclerView.addOnItemTouchListener(
-//                new SubCatagoryFragmentPage.RecyclerItemClickListener(getActivity(), new SubCatagoryFragmentPage.RecyclerItemClickListener.OnItemClickListener() {
-//                    @Override public void onItemClick(View view, int position) {
-//                        // TODO Handle item click
-//                        Log.d("fsdfsdfsdgfsd", "dfgdfg"+position);
-//
-//
-//                        Fragment fragment=new CatagoryViewFragment();
-//                        FragmentManager manager=getFragmentManager();
-//                        FragmentTransaction ft=manager.beginTransaction();
-//                        ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
-//                        Bundle bundle=new Bundle();
-//                        bundle.putString("product_id",AllProducts.get(position).get("id").toString());
-//                        //bundle.putString("product_image",DataList.get(position).getDesc().toString());
-//                        fragment.setArguments(bundle);
-//
-//                    }
-//                })
-//        );
+        mRecyclerView.addOnItemTouchListener(
+                new SubCatagoryFragmentPage.RecyclerItemClickListener(getActivity(), new SubCatagoryFragmentPage.RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        Log.d("fsdfsdfsdgfsd", "dfgdfg"+position);
+
+
+                        Fragment fragment=new CatagoryViewFragment();
+                        FragmentManager manager=getFragmentManager();
+                        FragmentTransaction ft=manager.beginTransaction();
+                        ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+                        Bundle bundle=new Bundle();
+                        bundle.putString("product_id",AllProducts.get(position).get("id").toString());
+                        //bundle.putString("product_image",DataList.get(position).getDesc().toString());
+                        fragment.setArguments(bundle);
+
+                    }
+                })
+        );
 
 
 

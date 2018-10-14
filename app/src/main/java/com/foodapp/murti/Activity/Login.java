@@ -232,7 +232,8 @@ public class Login extends AppCompatActivity  {
 
                             Getseter.editor.putString("user_id", jsonObject1.optString("id"));
                             Getseter.editor.putString("uname", jsonObject1.optString("fname"));
-                            Getseter.editor.putString("emailid", email.getText().toString());
+//                            Getseter.editor.putString("emailid", jsonObject1.optString("email"));
+                            MyPrefrences.setEMAILID(getApplicationContext(),jsonObject1.optString("email"));
                             MyPrefrences.setMyRefrel(getApplicationContext(),jsonObject1.optString("referer"));
                             Getseter.editor.commit();
                         }

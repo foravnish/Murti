@@ -31,6 +31,7 @@ import com.foodapp.murti.Fragments.UpdateProfile;
 import com.foodapp.murti.R;
 import com.foodapp.murti.Utils.DatabaseHandler;
 import com.foodapp.murti.Utils.Getseter;
+import com.foodapp.murti.Utils.MyPrefrences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -277,6 +278,7 @@ public class Navigation extends AppCompatActivity
             Getseter.editor.clear();
             Getseter.editor.commit();
             startActivity(new Intent(Navigation.this,Login.class));
+            MyPrefrences.resetPrefrences(getApplicationContext());
             finishAffinity();
         }
 

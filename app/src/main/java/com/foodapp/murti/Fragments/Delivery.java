@@ -100,6 +100,11 @@ public class Delivery extends Fragment {
             }
         });
 
+
+
+
+
+        chackingAddress();
        // Toast.makeText(getActivity(),radioSexButton.getText(), Toast.LENGTH_SHORT).show();
 
         JsonObjectRequest jsonObjectRequest2=new JsonObjectRequest(Request.Method.GET, Api.contactDetails, null, new Response.Listener<JSONObject>() {
@@ -401,20 +406,11 @@ public class Delivery extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (!Getseter.preferences.getString("fname","").toString().equals("") &&
-                     //   !Getseter.preferences.getString("lname","").toString().equals("") &&
-                        !Getseter.preferences.getString("house_no","").toString().equals("") &&
-                        !Getseter.preferences.getString("street","").toString().equals("") &&
-                       // !Getseter.preferences.getString("area","").toString().equals("") &&
-                        !Getseter.preferences.getString("pincode","").toString().equals("") &&
-                        !Getseter.preferences.getString("city_name","").toString().equals("") &&
-                        !Getseter.preferences.getString("mobile","").toString().equals("")){
 
 
+                if (paymentMode.equals("Cash on Delivery")){
 
-                    if (paymentMode.equals("Cash on Delivery")){
-
-                        placeOrder();
+                    placeOrder();
 
 //                        Intent intent=new Intent(getActivity(), ThankAct.class);
 //                        intent.putExtra("orderno",jsonObject1.optString("order_id"));
@@ -422,65 +418,53 @@ public class Delivery extends Fragment {
 //                        intent.putExtra("phone",phoneString.toString());
 //                        startActivity(intent);
 //
-                    }
-                    else if (paymentMode.equals("Credit/Debit card")){
+                }
+                else if (paymentMode.equals("Credit/Debit card")){
 
 
 
-                        JSONArray cartItemsArray = null;
+                    JSONArray cartItemsArray = null;
 
-                        try {
+                    try {
 
-                            cartItemsArray = new JSONArray();
-                            JSONObject cartItemsObjedct;
-                            for (int i = 0; i < getArguments().getInt("length"); i++) {
-                                cartItemsObjedct = new JSONObject();
-                                cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
-                                cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
-                                cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
-                                cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
-                                cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
-                                cartItemsArray.put(cartItemsObjedct);
-                                Log.d("fsdfsdgfsdgfds", String.valueOf(i));
-                            }
-                            //  dataObj.put("productArr", cartItemsArray);
-                        } catch (JSONException e) { // TODO Auto-generated catch bloc
-                            e.printStackTrace();
+                        cartItemsArray = new JSONArray();
+                        JSONObject cartItemsObjedct;
+                        for (int i = 0; i < getArguments().getInt("length"); i++) {
+                            cartItemsObjedct = new JSONObject();
+                            cartItemsObjedct.putOpt("Product_name", DataList.get(i).getName().toString());
+                            cartItemsObjedct.putOpt("Price", DataList.get(i).getCdate().toString());
+                            cartItemsObjedct.putOpt("Quantity", DataList.get(i).getUdate().toString());
+                            cartItemsObjedct.putOpt("Product_Id",DataList.get(i).getID().toString());
+                            cartItemsObjedct.putOpt("reciver_amount", DataList.get(i).getUdate3().toString());
+                            cartItemsArray.put(cartItemsObjedct);
+                            Log.d("fsdfsdgfsdgfds", String.valueOf(i));
                         }
+                        //  dataObj.put("productArr", cartItemsArray);
+                    } catch (JSONException e) { // TODO Auto-generated catch bloc
+                        e.printStackTrace();
+                    }
 
 //                        params.put("productArr",cartItemsArray.toString());
 
-                        Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
+                    Log.d("dfgdgdfgdfhgdfh",cartItemsArray.toString());
 
 
 
-                        Intent intent=new Intent(getActivity(), PaymentAct.class);
+                    Intent intent=new Intent(getActivity(), PaymentAct.class);
 
-                        intent.putExtra("item",orderitem.getText().toString());
-                        intent.putExtra("subtotal",subtotal.getText().toString());
-                        intent.putExtra("charge",charge.getText().toString());
-                        intent.putExtra("total",total.getText().toString());
-                        intent.putExtra("productArr",cartItemsArray.toString());
-                        intent.putExtra("email",emailString.toString());
-                        intent.putExtra("phone",phoneString.toString());
-                        startActivity(intent);
-
-                    }
-                }
-                else{
-                    Fragment fragment=new UpdateProfile();
-                    FragmentManager manager=getFragmentManager();
-                    Bundle bundle=new Bundle();
-                    bundle.putString("type","prod");
-                    bundle.putString("orderitem", getArguments().get("orderitem").toString());
-                    bundle.putString("cal_price",getArguments().get("cal_price").toString());
-                    bundle.putInt("length",getArguments().getInt("length"));
-                    FragmentTransaction ft=manager.beginTransaction();
-                    fragment.setArguments(bundle);
-                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-                    ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+                    intent.putExtra("item",orderitem.getText().toString());
+                    intent.putExtra("subtotal",subtotal.getText().toString());
+                    intent.putExtra("charge",charge.getText().toString());
+                    intent.putExtra("total",total.getText().toString());
+                    intent.putExtra("productArr",cartItemsArray.toString());
+                    intent.putExtra("email",emailString.toString());
+                    intent.putExtra("phone",phoneString.toString());
+                    startActivity(intent);
 
                 }
+
+
+
 
             }
 
@@ -625,6 +609,37 @@ public class Delivery extends Fragment {
         });
 
         return view;
+    }
+
+    private void chackingAddress() {
+
+        if (!Getseter.preferences.getString("fname","").toString().equals("") &&
+                //   !Getseter.preferences.getString("lname","").toString().equals("") &&
+                !Getseter.preferences.getString("house_no","").toString().equals("") &&
+                !Getseter.preferences.getString("street","").toString().equals("") &&
+                // !Getseter.preferences.getString("area","").toString().equals("") &&
+                !Getseter.preferences.getString("pincode","").toString().equals("") &&
+                !Getseter.preferences.getString("city_name","").toString().equals("") &&
+                !Getseter.preferences.getString("mobile","").toString().equals("")){
+
+
+
+
+        }
+        else{
+            Fragment fragment=new UpdateProfile();
+            FragmentManager manager=getFragmentManager();
+            Bundle bundle=new Bundle();
+            bundle.putString("type","prod");
+            bundle.putString("orderitem", getArguments().get("orderitem").toString());
+            bundle.putString("cal_price",getArguments().get("cal_price").toString());
+            bundle.putInt("length",getArguments().getInt("length"));
+            FragmentTransaction ft=manager.beginTransaction();
+            fragment.setArguments(bundle);
+            ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+            ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+
+        }
     }
 
 }

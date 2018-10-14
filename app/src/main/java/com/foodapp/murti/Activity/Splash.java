@@ -83,7 +83,7 @@ public class Splash extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //Log.w("GCMRegIntentService", "sendRegistrationTokenToServer! ErrorListener:" );
-                        Toast.makeText(getApplicationContext(), "sendRegistrationTokenToServer! ErrorListener", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Please Connect to the internet.", Toast.LENGTH_LONG).show();
 
                     }
                 }) {

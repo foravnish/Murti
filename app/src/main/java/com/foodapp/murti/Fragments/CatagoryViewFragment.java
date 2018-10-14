@@ -137,7 +137,7 @@ public class CatagoryViewFragment extends Fragment {
                             mrp.setText("₹ "+jsonObject1.optString("mrp_price"));
                             mrp.setPaintFlags(mrp.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                             size.setText(jsonObject1.optString("size"));
-                            disount.setText(jsonObject1.optString("discount")+"");
+                            disount.setText(jsonObject1.optString("discount")+" OFF");
                             selling.setText(jsonObject1.optString("sell_price"));
                         }
                         //  DataList.add(new Getseter(jsonObject.optString("product_id"),jsonObject.optString("product_name"),jsonObject.optString("product_image"),null));

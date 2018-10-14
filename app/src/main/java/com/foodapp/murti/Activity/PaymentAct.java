@@ -29,6 +29,7 @@ import com.foodapp.murti.Utils.Api;
 import com.foodapp.murti.Utils.AppController;
 import com.foodapp.murti.Utils.DatabaseHandler;
 import com.foodapp.murti.Utils.Getseter;
+import com.foodapp.murti.Utils.MyPrefrences;
 import com.payumoney.core.PayUmoneyConfig;
 import com.payumoney.core.PayUmoneyConstants;
 import com.payumoney.core.PayUmoneySdkInitializer;
@@ -175,7 +176,7 @@ public class PaymentAct extends AppCompatActivity {
 //        String firstName = mAppPreference.getFirstName();
 //        String email = email_til.getEditText().getText().toString().trim();
 //        String email = MyPrefrences.getEMAILID(getApplicationContext()).toString();
-        String email = Getseter.preferences.getString("emailid","");
+        String email = MyPrefrences.getEMAILID(getApplicationContext());
         String udf1 = "";
         String udf2 = "";
         String udf3 = "";

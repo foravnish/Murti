@@ -42,7 +42,7 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:text="Trending"
+            android:text="Trending Products"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

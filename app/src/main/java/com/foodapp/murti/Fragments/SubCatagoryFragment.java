@@ -77,6 +77,7 @@ public class SubCatagoryFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
+        Getseter.showdialog(dialog);
         adapter=new Adapter();
 //        adapter2=new Adapter2();
         //adapter2= new Adapter2();
@@ -327,7 +328,7 @@ public class SubCatagoryFragment extends Fragment {
             name.setText(DataList.get(position).getName().toString());
            // size.setText(DataList.get(position).getCdate().toString());
             price.setText("₹ "+DataList.get(position).getUdate().toString());
-            off.setText("₹ "+DataList.get(position).getImg2().toString()+" OFF");
+            off.setText(""+DataList.get(position).getImg2().toString()+" OFF");
             newprice.setText("₹ "+DataList.get(position).getCdate2().toString());
             price.setPaintFlags(price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
