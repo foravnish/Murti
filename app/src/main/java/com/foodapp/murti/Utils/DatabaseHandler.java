@@ -18,7 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     // Database Name
     private static final String DATABASE_NAME = "fortisManager";
@@ -37,6 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String c_cat_price2 = "c_cat_price2";
     private static final String c_cat_qty2 = "c_cat_qty2";
     private static final String c_cat_cal_price = "c_cat_cal_price";
+    private static final String c_cat_cal_pid = "c_cat_cal_pid";
 
 
     public DatabaseHandler(Context context) {
@@ -50,7 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + c_cat_id + " TEXT," + c_cat_name + " TEXT,"
                 + c_cat_price  +  " TEXT,"   + c_cat_rec_amount  +  " TEXT,"
                 + c_cat_price2  +  " TEXT,"   + c_cat_qty2  +  " TEXT,"
-                + c_cat_qty + " TEXT, " +   c_cat_cal_price + " TEXT" + ")";
+                + c_cat_qty + " TEXT, " +   c_cat_cal_price + " TEXT," + c_cat_cal_pid + " TEXT"+ ")";
         db.execSQL(CREATE_CATAGORY_TABLE);
 
     }
@@ -85,6 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
        values.put(c_cat_qty2, Catagory.getCdate()); // Contact Phone
        values.put(c_cat_qty, Catagory.getUdate()); // Contact Phone
        values.put(c_cat_cal_price, Catagory.getUdate3()); // Contact Phone
+       values.put(c_cat_cal_pid, Catagory.getProductId()); // Contact Phone
       // values.put(c_cat_qty, Catagory.getImg()); // Contact Name
 
 
@@ -118,6 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 contact.setCdate(cursor.getString(5));
                 contact.setUdate(cursor.getString(6));
                 contact.setUdate3(cursor.getString(7));
+                contact.setProductId(cursor.getString(8));
 //                contact.setImg(cursor.getString(4));
 
                 // Adding contact to list

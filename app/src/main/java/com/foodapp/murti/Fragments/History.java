@@ -88,7 +88,7 @@ public class History extends Fragment {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.optJSONObject(i);
 
-                            DataList.add(new Getseter(jsonObject.optString("order_date"), jsonObject.optString("id"), jsonObject.optString("shipping_amount"), jsonObject.optString("total_amount"), jsonObject.optString("payment_method"), jsonObject.optString("order_status"), null,null));
+                            DataList.add(new Getseter(jsonObject.optString("order_date"), jsonObject.optString("id"), jsonObject.optString("shipping_amount"), jsonObject.optString("total_amount"), jsonObject.optString("payment_method"), jsonObject.optString("order_status"), null,null,null));
 
                             gridview.setAdapter(adapter);
                         }
@@ -133,7 +133,9 @@ public class History extends Fragment {
         TextView status,method,amount,shipping,date;
         Adapter(){
             inflater=(LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+            if (inflater == null) {
+                throw new AssertionError("LayoutInflater not found.");
+            }
         }
         @Override
         public int getCount() {

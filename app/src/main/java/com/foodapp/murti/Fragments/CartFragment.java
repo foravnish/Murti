@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -81,6 +82,7 @@ public class CartFragment extends Fragment {
 
 
 
+
         gridview.setAdapter(adapter);
         Log.d("dfgdfghdfhdfh",DataList.toString());
 
@@ -111,6 +113,27 @@ public class CartFragment extends Fragment {
                 fragment.setArguments(bundle);
             }
         });
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                Log.d("gdfgdfgdfgdfgd",DataList.get(i).getProductId().toString());
+
+                Fragment fragment=new CatagoryViewFragment();
+                FragmentManager manager=getFragmentManager();
+                FragmentTransaction ft=manager.beginTransaction();
+                ft.replace(R.id.content_frame,fragment).addToBackStack(null).commit();
+                Bundle bundle=new Bundle();
+                bundle.putString("product_id",DataList.get(i).getProductId().toString());
+                //bundle.putString("product_image",DataList.get(position).getDesc().toString());
+                fragment.setArguments(bundle);
+            }
+        });
+
+
+
         return  view;
 
 
@@ -126,7 +149,9 @@ public class CartFragment extends Fragment {
         int np1;
         Adapter(){
             inflater=(LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+            if (inflater == null) {
+                throw new AssertionError("LayoutInflater not found.");
+            }
         }
         @Override
         public int getCount() {

@@ -439,7 +439,9 @@ public class HomeFagment extends Fragment  {
         LayoutInflater inflater;
         Adapter(){
             inflater=(LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+            if (inflater == null) {
+                throw new AssertionError("LayoutInflater not found.");
+            }
         }
         @Override
         public int getCount() {
@@ -477,6 +479,7 @@ public class HomeFagment extends Fragment  {
         LayoutInflater layoutInflater;
         Button download;
         public CustomPagerAdapter() {
+
         }
 
         @Override
@@ -495,6 +498,11 @@ public class HomeFagment extends Fragment  {
             NetworkImageView networkImageView;
 
             layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            if (layoutInflater == null) {
+                throw new AssertionError("LayoutInflater not found.");
+            }
+
             View view = layoutInflater.inflate(R.layout.custom_photogallery, container, false);
             networkImageView = (NetworkImageView) view.findViewById(R.id.networkImageView);
 

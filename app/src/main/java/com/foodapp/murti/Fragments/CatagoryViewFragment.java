@@ -113,7 +113,6 @@ public class CatagoryViewFragment extends Fragment {
         Getseter.showdialog(dialog);
 
 
-
 //        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?getProductDetails=1&product_id="+getArguments().getString("product_id"), null, new Response.Listener<JSONObject>() {
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Api.productDetails+"?productId="+getArguments().getString("product_id"), null, new Response.Listener<JSONObject>() {
             @Override
@@ -171,6 +170,7 @@ public class CatagoryViewFragment extends Fragment {
                 num=num+1;
                 Navigation.textOne.setText(num+"");
 
+                Log.d("gfdgdfgdfgdfgddfg",jsonObject.optString("id"));
                 Log.d("fgdgfdgh", String.valueOf(DataList.size()));
                 Log.d("fgdgfdgh", String.valueOf(num));
 
@@ -181,7 +181,7 @@ public class CatagoryViewFragment extends Fragment {
                 double m=m1*m2;
 
 //               double cal_price=selling.getText().toString()* integer_number.getText().toString();
-                db.addCatagory(new Getseter(jsonObject1.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("description"), jsonObject.optString("photo"), jsonObject1.optString("mrp_price"), jsonObject1.optString("sell_price"), integer_number.getText().toString(),String.valueOf(m) ));
+                db.addCatagory(new Getseter(jsonObject1.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("description"), jsonObject.optString("photo"), jsonObject1.optString("mrp_price"), jsonObject1.optString("sell_price"), integer_number.getText().toString(),String.valueOf(m),jsonObject.optString("id")));
                 Toast.makeText(getActivity(), "Added in Cart", Toast.LENGTH_SHORT).show();
 
 //                Catag=db.getAllCatagory();

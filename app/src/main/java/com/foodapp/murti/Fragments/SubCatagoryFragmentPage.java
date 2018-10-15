@@ -160,7 +160,6 @@ public class SubCatagoryFragmentPage extends Fragment {
                                     Log.d("dfgdfgdfgdfvbcbcvbcgdf","true3");
                                     Log.d("gdfgdfgdfghdfgs", jsonArraySizes.toString());
 
-
 //                                        products_pojo.setTitle(products_jsonObject.getString("name"));
                                     map.put("id", products_jsonObject.getString("id"));
                                     map.put("product_name", products_jsonObject.getString("product_name"));
@@ -222,10 +221,7 @@ public class SubCatagoryFragmentPage extends Fragment {
 //        MySingleton.getInstance(MainActivity.this).addToRequestQueue(mJsonObjectRequest);
         AppController.getInstance().addToRequestQueue(mJsonObjectRequest);
 
-
     }
-
-
 
 
     public static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
