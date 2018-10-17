@@ -94,7 +94,7 @@ public class SubCatagoryFragment extends Fragment {
 
             Log.d("fsdgdsfgdfgh", getArguments().getString("cat_id").toString());
             //JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?getProducts=1&cat_id=60"+getArguments().getString("cat_id").toString(), null, new Response.Listener<JSONObject>() {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Api.subCategoriesList + "?catId=" + getArguments().getString("cat_id").toString(), null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Api.subCategoriesList + "?catId=" + getArguments().getString("cat_id").toString()+"&page_no=all", null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
 
