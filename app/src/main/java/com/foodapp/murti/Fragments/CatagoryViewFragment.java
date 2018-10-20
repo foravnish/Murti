@@ -176,8 +176,8 @@ public class CatagoryViewFragment extends Fragment {
 
                 Getseter.editor.putString("ordername",name.getText().toString());
                 Getseter.editor.commit();
-                double m1=Integer.parseInt(selling.getText().toString());
-                double m2=Integer.parseInt(integer_number.getText().toString());
+                double m1=Double.parseDouble(selling.getText().toString());
+                double m2=Double.parseDouble(integer_number.getText().toString());
                 double m=m1*m2;
 
 //               double cal_price=selling.getText().toString()* integer_number.getText().toString();

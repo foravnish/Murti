@@ -275,6 +275,7 @@ public class UpdateProfile extends Fragment {
                                     Bundle bundle=new Bundle();
                                     bundle.putString("orderitem", getArguments().get("orderitem").toString());
                                     bundle.putString("cal_price", getArguments().get("cal_price").toString());
+                                    bundle.putString("totalItem", getArguments().get("totalItem").toString());
                                     bundle.putInt("length", getArguments().getInt("length"));
                                     fragment.setArguments(bundle);
 

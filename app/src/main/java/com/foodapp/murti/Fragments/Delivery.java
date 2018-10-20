@@ -83,7 +83,7 @@ public class Delivery extends Fragment {
 
         edit=(TextView)view.findViewById(R.id.edit);
 
-        charge.setText("1");
+        charge.setText("0");
         final RadioGroup gr =(RadioGroup)view.findViewById(R.id.radiogroup) ;
         final int selectedId = gr.getCheckedRadioButtonId();
         final RadioButton radioSexButton = (RadioButton) view.findViewById(selectedId);
@@ -107,18 +107,55 @@ public class Delivery extends Fragment {
         chackingAddress();
        // Toast.makeText(getActivity(),radioSexButton.getText(), Toast.LENGTH_SHORT).show();
 
+
         JsonObjectRequest jsonObjectRequest2=new JsonObjectRequest(Request.Method.GET, Api.contactDetails, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
+                Log.d("fgdgdgfgfdfgd",response.toString());
 
                 Getseter.exitdialog(dialog);
                 try {
                     JSONObject jsonObject=response.getJSONObject("message");
 
-                    delCharge= jsonObject.optString("del_charge");
+
                     emailString= jsonObject.optString("email");
                     phoneString= jsonObject.optString("contactno");
 
+
+
+                    if (    Getseter.preferences.getString("pincode","").equals("141001")||
+                            Getseter.preferences.getString("pincode","").equals("141002")||
+                            Getseter.preferences.getString("pincode","").equals("141003")||
+                            Getseter.preferences.getString("pincode","").equals("141004")||
+                            Getseter.preferences.getString("pincode","").equals("141005")||
+                            Getseter.preferences.getString("pincode","").equals("141006")||
+                            Getseter.preferences.getString("pincode","").equals("141007")||
+                            Getseter.preferences.getString("pincode","").equals("141008")){
+
+
+
+
+                        Log.d("Dgdfgdfgfg","true");
+                                if (Double.parseDouble(getArguments().get("cal_price").toString())<400){
+                                    delCharge= jsonObject.optString("del_charge");
+                                }
+                                else{
+                                    delCharge= "0";
+                                }
+                    }
+                    else{
+                        Log.d("Dgdfgdfgfg","false");
+
+                        Log.d("dgdfgdfgdfgsd",getArguments().getString("totalItem"));
+                        int t_item=Integer.parseInt(getArguments().getString("totalItem"));
+
+                        int nw_charge=Integer.parseInt(jsonObject.optString("del_charge"));
+
+                        delCharge= String.valueOf(t_item*nw_charge);
+
+
+                    }
                     charge.setText(delCharge+"");
                     Log.d("gdfghfghfgh",delCharge);
                     double t1=Double.parseDouble(subtotal.getText().toString());
@@ -135,6 +172,14 @@ public class Delivery extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), "Please connect to the internet.", Toast.LENGTH_SHORT).show();
                 Getseter.exitdialog(dialog);
+
+                Fragment fragment=new CartFragment();
+                FragmentManager fm=getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+                ft.replace(R.id.content_frame, fragment).addToBackStack(null);
+                ft.commit();
+
             }
         });
         AppController.getInstance().addToRequestQueue(jsonObjectRequest2);
@@ -171,6 +216,7 @@ public class Delivery extends Fragment {
                 bundle.putString("type","prod");
                 bundle.putString("orderitem", getArguments().get("orderitem").toString());
                 bundle.putString("cal_price",getArguments().get("cal_price").toString());
+                bundle.putString("totalItem",getArguments().get("totalItem").toString());
                 bundle.putInt("length",getArguments().getInt("length"));
                 FragmentTransaction ft=manager.beginTransaction();
                 fragment.setArguments(bundle);

@@ -49,6 +49,7 @@ public class CartFragment extends Fragment {
     Dialog dialog;
     ImageView remove;
     double total;
+    int totalItem;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -109,6 +110,7 @@ public class CartFragment extends Fragment {
                 Bundle bundle=new Bundle();
                 bundle.putString("orderitem", String.valueOf(DataList.size()));
                 bundle.putString("cal_price", String.valueOf(total));
+                bundle.putString("totalItem", String.valueOf(totalItem));
                 bundle.putInt("length", DataList.size());
                 fragment.setArguments(bundle);
             }
@@ -213,9 +215,13 @@ public class CartFragment extends Fragment {
             newprice.setText(DataList.get(position).getUdate3());
 
             total=0.0;
+            totalItem=0;
 
             for(int i=0;i<DataList.size();i++){
                 total=total+Double.parseDouble(DataList.get(i).getUdate3());
+                totalItem=totalItem+Integer.parseInt(DataList.get(i).getUdate());
+
+
             }
 
 
@@ -225,6 +231,7 @@ public class CartFragment extends Fragment {
 //            checkout.setText(""+np1);
 
             Log.d("fgdfgdfhdfh",total+"");
+            Log.d("dfdfdfdfgetgs",totalItem+"");
             Log.d("fgdfgdfhgdfh",DataList.size()+"");
 //            Toast.makeText(getActivity(), ""+m, Toast.LENGTH_SHORT).show();
 //            amount.setText(DataList.get(position).getCount().toString());
