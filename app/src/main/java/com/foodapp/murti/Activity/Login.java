@@ -141,7 +141,7 @@ public class Login extends AppCompatActivity  {
                             Getseter.showdialog(dialog);
                         }
                         else{
-                            Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
                         }
 //                    }
 //                    else{
@@ -149,7 +149,8 @@ public class Login extends AppCompatActivity  {
 //                    }
                 }
                 else{
-                    Toast.makeText(Login.this, "Please enter email id", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Please Enter Mobile Number", Toast.LENGTH_SHORT).show();
+
                 }
                 //startActivity(new Intent(Login.this,Navigation.class));
 
