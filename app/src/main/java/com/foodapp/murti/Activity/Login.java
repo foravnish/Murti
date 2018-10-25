@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity  {
 
     Button login,signup;
     EditText password,email;
-    TextView forgotssword;
+    TextView forgotssword,skip;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     Dialog dialog;
     Spinner city;
@@ -70,6 +70,7 @@ public class Login extends AppCompatActivity  {
         email=(EditText)findViewById(R.id.email);
         password=(EditText)findViewById(R.id.password);
         forgotssword=(TextView)findViewById(R.id.forgotssword);
+        skip=(TextView)findViewById(R.id.skip);
        // city=(Spinner) findViewById(R.id.city);
 
         dialog=new Dialog(Login.this);
@@ -82,7 +83,15 @@ public class Login extends AppCompatActivity  {
         if (checkAndRequestPermissions()) {
             // carry on the normal flow, as the case of  permissions  granted.
         }
-
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this,Navigation.class));
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                finish();
+                MyPrefrences.setUserLogin(getApplicationContext(),false);
+            }
+        });
         forgotssword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,48 +166,6 @@ public class Login extends AppCompatActivity  {
             }
         });
 
-        //Getseter.showdialog(dialog);
-//        JsonObjectRequest jsonObjectRequest22=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?getCities=1", null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                //Getseter.exitdialog(dialog);
-//
-//                JSONArray jsonArray=response.optJSONArray("cities");
-//                for (int i=0;i<jsonArray.length();i++){
-//                    JSONObject jsonObject=jsonArray.optJSONObject(i);
-//                    DataList.add(new Getseter(jsonObject.optString("city_id"),jsonObject.optString("city_name"),null,null));
-//                    City_Names.add(jsonObject.optString("city_name"));
-//                }
-//                ArrayAdapter<String> adapter_state1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item,    City_Names);
-//                adapter_state1.setDropDownViewResource(R.layout.spinnertext);
-//                city.setAdapter(adapter_state1);
-//
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getApplicationContext(), "Please connect to the internet.", Toast.LENGTH_SHORT).show();
-//              //  Getseter.exitdialog(dialog);
-//            }
-//        });
-//        AppController.getInstance().addToRequestQueue(jsonObjectRequest22);
-
-//        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d("sdfvsdgvfdsgdf", DataList.get(position).getID());
-//                Getseter.editor.putString("city_id", DataList.get(position).getID());
-//                Getseter.editor.putString("city_name", DataList.get(position).getName().toString());
-//                Getseter.editor.commit();
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
 
         if (Getseter.preferences.contains("user_id")){
             startActivity(new Intent(Login.this,Navigation.class));
@@ -231,6 +198,7 @@ public class Login extends AppCompatActivity  {
                         for (int i=0;i<jsonArray.length();i++) {
                             JSONObject jsonObject1=jsonArray.getJSONObject(i);
 
+                            MyPrefrences.setUserLogin(getApplicationContext(),true);
                             Getseter.editor.putString("user_id", jsonObject1.optString("id"));
                             Getseter.editor.putString("uname", jsonObject1.optString("fname"));
 //                            Getseter.editor.putString("emailid", jsonObject1.optString("email"));

@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Atul Goel"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="18dp"
          android:layout_gravity="left"/>
@@ -44,7 +44,7 @@ android:layout_height="wrap_content"
         android:textSize="15dp"
         android:layout_gravity="left"
         android:textColor="@color/white"
-        android:text="goel.atul@gmail.com" />
+        android:text="" />
     <TextView
         android:id="@+id/edit"
         android:layout_width="25dp"

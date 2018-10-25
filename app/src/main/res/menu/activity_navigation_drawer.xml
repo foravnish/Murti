@@ -17,20 +17,8 @@
             android:title="Order History" />
         <item
             android:id="@+id/referal"
-            android:icon="@drawable/history"
+            android:icon="@drawable/share"
             android:title="Refer a Friend" />
-        <!--<item-->
-            <!--android:id="@+id/breakfirst"-->
-            <!--android:icon="@drawable/ic_menu_slideshow"-->
-            <!--android:title="Breakfirst" />-->
-        <!--<item-->
-            <!--android:id="@+id/lunch"-->
-            <!--android:icon="@drawable/ic_menu_manage"-->
-            <!--android:title="Lunch" />-->
-        <!--<item-->
-            <!--android:id="@+id/diner"-->
-            <!--android:icon="@drawable/ic_menu_manage"-->
-            <!--android:title="Dinner" />-->
         <item
             android:id="@+id/changepwd"
             android:icon="@drawable/change"
@@ -41,17 +29,5 @@
             android:title="Logout" />
     </group>
 
-    <!--<item android:title="Communicate">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_share"-->
-                <!--android:icon="@drawable/ic_menu_share"-->
-                <!--android:title="Share" />-->
-            <!--<item-->
-                <!--android:id="@+id/nav_send"-->
-                <!--android:icon="@drawable/ic_menu_send"-->
-                <!--android:title="Send" />-->
-        <!--</menu>-->
-    <!--</item>-->
 
 </menu>

@@ -88,7 +88,6 @@ public class SignnUp extends AppCompatActivity {
                                         Toast.makeText(SignnUp.this, "Please enter same password", Toast.LENGTH_SHORT).show();
                                     }
 
-                                    Getseter.showdialog(dialog);
                                 }
                                 else
                                 {
@@ -123,7 +122,7 @@ public class SignnUp extends AppCompatActivity {
     private void register() {
 
 
-
+        Getseter.showdialog(dialog);
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Api.userRegistration  , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
