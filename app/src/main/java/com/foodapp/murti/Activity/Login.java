@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -86,10 +88,18 @@ public class Login extends AppCompatActivity  {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this,Navigation.class));
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                finish();
-                MyPrefrences.setUserLogin(getApplicationContext(),false);
+                ConnectivityManager conMgr =  (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+                if (netInfo == null){
+                    Toast.makeText(getApplicationContext(), "Please Connect to the internet.", Toast.LENGTH_SHORT).show();
+                }else{
+                    startActivity(new Intent(Login.this,Navigation.class));
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    finish();
+                    MyPrefrences.setUserLogin(getApplicationContext(),false);
+                }
+
+
             }
         });
         forgotssword.setOnClickListener(new View.OnClickListener() {
