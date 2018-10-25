@@ -165,6 +165,7 @@ public class Navigation extends AppCompatActivity
                     bundle.putString("type","none");
                     bundle.putString("orderitem", "");
                     bundle.putString("cal_price","");
+                    bundle.putString("totalItem","");
                     bundle.putInt("length",0);
                     FragmentTransaction ft=fm.beginTransaction();
                     fragment.setArguments(bundle);
