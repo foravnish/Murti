@@ -32,6 +32,7 @@ public class Getseter{
     String udate2;
 
     String productId;
+    String time,time2;
 
 
     public static void showdialog(Dialog dialog) {
@@ -60,7 +61,7 @@ public class Getseter{
     }
 
 
-    ////  8
+    ////  9
     public Getseter(String id, String name, String _desc,String _count, String img, String cdate,String udate,String udate3,String productId){
         this._id = id;
         this._name = name;
@@ -85,6 +86,20 @@ public class Getseter{
         this.img2 = img2;
         this.cdate2 = cdate2;
         this.udate2 = udate2;
+    }
+    //11
+    public Getseter(String id, String name, String _desc,String _count, String img, String cdate,String udate,String udate3,String productId,String time, String time2){
+        this._id = id;
+        this._name = name;
+        this._desc = _desc;
+        this._count = _count;
+        this.img = img;
+        this.cdate = cdate;
+        this.udate = udate;
+        this.udate3 = udate3;
+        this.productId = productId;
+        this.time=time;
+        this.time2=time;
     }
 
     public Getseter() {
@@ -199,5 +214,21 @@ public class Getseter{
 
     public String getProductId() {
         return productId;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getTime2() {
+        return time2;
+    }
+
+    public void setTime2(String time2) {
+        this.time2 = time2;
     }
 }

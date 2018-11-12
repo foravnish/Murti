@@ -68,6 +68,8 @@ public class Navigation extends AppCompatActivity
         textOne=(TextView)findViewById(R.id.textOne);
         simpleSearchView=(SearchView) findViewById(R.id.simpleSearchView);
 
+        Getseter.preferences = getSharedPreferences("My_prefence", MODE_PRIVATE);
+        Getseter.editor =Getseter.preferences.edit();
 
 
         db = new DatabaseHandler(getApplicationContext());
@@ -93,7 +95,7 @@ public class Navigation extends AppCompatActivity
 
         if (MyPrefrences.getUserLogin(getApplicationContext())==true) {
             name.setText(Getseter.preferences.getString("uname", "").toUpperCase());
-            email.setText(Getseter.preferences.getString("emailid", ""));
+            email.setText(MyPrefrences.getMobile(getApplicationContext()));
 
             Menu menu = navigationView.getMenu();
             MenuItem nav_login = menu.findItem(R.id.logout);

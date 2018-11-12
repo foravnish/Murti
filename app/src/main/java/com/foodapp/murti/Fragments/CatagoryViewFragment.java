@@ -32,6 +32,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -53,6 +55,7 @@ public class CatagoryViewFragment extends Fragment {
     JSONObject jsonObject;
     JSONObject jsonObject1;
     List<Getseter> Catag=new ArrayList<Getseter>();
+    boolean flag=false;
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +76,9 @@ public class CatagoryViewFragment extends Fragment {
         button1=(TextView)view.findViewById(R.id.button1);
         number=1;
 //        DataList=db.getAllCatagory();
+
+//        Date currentTime = Calendar.getInstance().getTime();
+//        Log.d("sdgdfgdfgdfgf", String.valueOf(currentTime));
 
         decrease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,9 +176,9 @@ public class CatagoryViewFragment extends Fragment {
                 num=num+1;
                 Navigation.textOne.setText(num+"");
 
-                Log.d("gfdgdfgdfgdfgddfg",jsonObject.optString("id"));
-                Log.d("fgdgfdgh", String.valueOf(DataList.size()));
-                Log.d("fgdgfdgh", String.valueOf(num));
+//                Log.d("gfdgdfgdfgdfgddfg",jsonObject.optString("id"));
+//                Log.d("fgdgfdgh", String.valueOf(DataList.size()));
+//                Log.d("fgdgfdgh", String.valueOf(num));
 
                 Getseter.editor.putString("ordername",name.getText().toString());
                 Getseter.editor.commit();
@@ -180,14 +186,22 @@ public class CatagoryViewFragment extends Fragment {
                 double m2=Double.parseDouble(integer_number.getText().toString());
                 double m=m1*m2;
 
-//               double cal_price=selling.getText().toString()* integer_number.getText().toString();
-                db.addCatagory(new Getseter(jsonObject1.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("description"), jsonObject.optString("photo"), jsonObject1.optString("mrp_price"), jsonObject1.optString("sell_price"), integer_number.getText().toString(),String.valueOf(m),jsonObject.optString("id")));
+
+
+                Date currentTime = Calendar.getInstance().getTime();
+                String time= String.valueOf(currentTime);
+
+                db.addCatagory(new Getseter(jsonObject1.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("description"), jsonObject.optString("photo"), jsonObject1.optString("mrp_price"), jsonObject1.optString("sell_price"), integer_number.getText().toString(),String.valueOf(m),jsonObject.optString("id"),time,"time2"));
+//                db.addCatagory(new Getseter(jsonObject1.optString("id"), jsonObject.optString("product_name"), jsonObject.optString("description"), jsonObject.optString("photo"), jsonObject1.optString("mrp_price"), jsonObject1.optString("sell_price"), integer_number.getText().toString(),String.valueOf(m),jsonObject.optString("id")));
+
                 Toast.makeText(getActivity(), "Added in Cart", Toast.LENGTH_SHORT).show();
 
 //                Catag=db.getAllCatagory();
 
 //                db.addCatagory(new Getseter("dfd", "dfd", "dfd", "dfd"));
 //                Log.d("dfgdfghdfhdfh",Catag.toString());
+
+
             }
         });
 

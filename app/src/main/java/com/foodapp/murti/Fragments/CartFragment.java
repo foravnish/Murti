@@ -48,7 +48,6 @@ public class CartFragment extends Fragment {
     String image;
     DatabaseHandler db;
     List<Getseter> DataList=new ArrayList<Getseter>();
-    List<Getseter> DataList1=new ArrayList<Getseter>();
     Button checkout;
     Adapter adapter;
     Dialog dialog;
@@ -75,6 +74,8 @@ public class CartFragment extends Fragment {
         adapter=new Adapter();
 
         getActivity().setTitle("Cart");
+
+
        // Toast.makeText(getActivity(), DataList.size()+"", Toast.LENGTH_SHORT).show();
 
         if (DataList.size()==0){
@@ -85,9 +86,6 @@ public class CartFragment extends Fragment {
             checkout.setVisibility(View.VISIBLE);
 
         }
-
-
-
 
         gridview.setAdapter(adapter);
         Log.d("dfgdfghdfhdfh",DataList.toString());
@@ -131,7 +129,6 @@ public class CartFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
                 Log.d("gdfgdfgdfgdfgd",DataList.get(i).getProductId().toString());
 
                 Fragment fragment=new CatagoryViewFragment();
@@ -145,10 +142,7 @@ public class CartFragment extends Fragment {
             }
         });
 
-
-
         return  view;
-
 
 
     }
@@ -232,12 +226,14 @@ public class CartFragment extends Fragment {
 //            int m1=Integer.parseInt(qty.getText().toString());
 //            int m2=Integer.parseInt(price.getText().toString());
 //            int m=m1*m2;
+            Log.d("sdfdsgfdgdf",DataList.get(position).getTime());
+
 
             close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                  //   Toast.makeText(getActivity(), DataList.get(position).getID().toString(), Toast.LENGTH_SHORT).show();
-                    db.removeSingleContact(new Getseter(DataList.get(position).getID().toString(),null,null,null));
+                    db.removeSingleContact(new Getseter(DataList.get(position).getTime().toString(),null,null,null));
                     fragment=new CartFragment();
                     FragmentManager fm=getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();

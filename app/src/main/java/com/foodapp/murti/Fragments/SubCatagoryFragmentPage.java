@@ -61,7 +61,7 @@ public class SubCatagoryFragmentPage extends Fragment {
         progressBar = (RelativeLayout) view.findViewById(R.id.rltv_progressBar);
         products_rclv = (RecyclerView) view.findViewById(R.id.rclv_products);
         products_arrayList = new ArrayList<>();
-        String ProductsUrl = "http://www.json-generator.com/api/json/get/ckDtZPkgJe?indent=6";
+
 
         Log.d("sdfsdfsdfsdfsd",getArguments().getString("cat_id"));
 

@@ -131,11 +131,6 @@ public class HomeFagment extends Fragment  {
 
         position=0;
 
-        /*
-          check 2
-
-         */
-
         //TODO Tranding
         getTrading();
 
@@ -223,52 +218,6 @@ public class HomeFagment extends Fragment  {
 
 
 
-
-
-
-//                Timer timer = new Timer();
-//                timer.scheduleAtFixedRate(new SliderTimer(), 3000, 3000);
-
-
-
-
-
-//                 handler = new Handler();
-//                 Update = new Runnable() {
-//                    public void run() {
-//                        if (currentPage == ImageList.size()) {
-//                            currentPage = 0;
-//                        }
-//                        currentPage = currentPage+1;
-//                    }
-//                };
-//
-//                viewPager.setCurrentItem(currentPage, true);
-//                handler.postDelayed(Update, 3000);
-
-
-
-
-//                handler = new Handler();
-//
-//                Update = new Runnable() {
-//
-//                    public void run() {
-//                        if (currentPage == ImageList.size()) {
-//                            currentPage = 0;
-//                        }
-//                        viewPager.setCurrentItem(currentPage++);
-//                    }
-//                };
-//                new Timer().schedule(new TimerTask() {
-//                    @Override
-//                    public void run() {
-//                        handler.post(Update);
-//                    }
-//                }, 3000, 3000);
-
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -314,14 +263,9 @@ public class HomeFagment extends Fragment  {
         });
         AppController.getInstance().addToRequestQueue(jsonObjectRequest);
 
-
-
-
-
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Fragment fragment=new SubCatagoryFragment();
                 FragmentManager manager=getFragmentManager();
                 FragmentTransaction ft=manager.beginTransaction();
@@ -438,7 +382,12 @@ public class HomeFagment extends Fragment  {
 
         LayoutInflater inflater;
         Adapter(){
-            inflater=(LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            try {
+                inflater=(LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            } catch (Exception e) {
+                getActivity().finish();
+                e.printStackTrace();
+            }
             if (inflater == null) {
                 throw new AssertionError("LayoutInflater not found.");
             }
@@ -497,7 +446,12 @@ public class HomeFagment extends Fragment  {
 
             NetworkImageView networkImageView;
 
-            layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            try {
+                layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            } catch (Exception e) {
+                getActivity().finish();
+                e.printStackTrace();
+            }
 
             if (layoutInflater == null) {
                 throw new AssertionError("LayoutInflater not found.");
