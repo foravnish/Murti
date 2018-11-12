@@ -80,7 +80,7 @@ public class ContactUs extends Fragment {
                         number.setText(jsonObject.optString("contactno"));
                         fax.setText(jsonObject.optString("fax"));
                         email.setText(jsonObject.optString("email"));
-Log.d("fsdfsdfsdfgsd",jsonObject.optString("contactno"));
+                        Log.d("fsdfsdfsdfgsd",jsonObject.optString("contactno"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

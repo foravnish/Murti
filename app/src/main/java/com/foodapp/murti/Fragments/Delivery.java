@@ -679,6 +679,7 @@ public class Delivery extends Fragment {
             bundle.putString("type","prod");
             bundle.putString("orderitem", getArguments().get("orderitem").toString());
             bundle.putString("cal_price",getArguments().get("cal_price").toString());
+            bundle.putString("totalItem",getArguments().get("totalItem").toString());
             bundle.putInt("length",getArguments().getInt("length"));
             FragmentTransaction ft=manager.beginTransaction();
             fragment.setArguments(bundle);

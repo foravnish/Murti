@@ -1,5 +1,7 @@
 package com.foodapp.murti.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -89,12 +91,25 @@ public class Navigation extends AppCompatActivity
         //toolbar.getNavigationIcon().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
 
-            name.setText(Getseter.preferences.getString("uname","").toUpperCase());
-            email.setText(Getseter.preferences.getString("emailid",""));
+        if (MyPrefrences.getUserLogin(getApplicationContext())==true) {
+            name.setText(Getseter.preferences.getString("uname", "").toUpperCase());
+            email.setText(Getseter.preferences.getString("emailid", ""));
 
-            Log.d("sdfgdgdfhbdfh",Getseter.preferences.getString("city_id",""));
-            Log.d("sdfgdgdfhbdfh",Getseter.preferences.getString("city_name",""));
+            Menu menu = navigationView.getMenu();
+            MenuItem nav_login = menu.findItem(R.id.logout);
+            nav_login.setTitle("Logout");
 
+            Log.d("sdfgdgdfhbdfh", Getseter.preferences.getString("city_id", ""));
+            Log.d("sdfgdgdfhbdfh", Getseter.preferences.getString("city_name", ""));
+        }
+        else{
+            name.setText("Guest");
+            email.setText("guest");
+
+            Menu menu = navigationView.getMenu();
+            MenuItem nav_login = menu.findItem(R.id.logout);
+            nav_login.setTitle("Login");
+        }
         this.setTitle("Murti");
 
 
@@ -139,23 +154,59 @@ public class Navigation extends AppCompatActivity
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment=new UpdateProfile();
-                FragmentManager fm=getSupportFragmentManager();
-                Bundle bundle=new Bundle();
-                bundle.putString("type","none");
-                bundle.putString("orderitem", "");
-                bundle.putString("cal_price","");
-                bundle.putInt("length",0);
-                FragmentTransaction ft=fm.beginTransaction();
-                fragment.setArguments(bundle);
-                ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-                ft.replace(R.id.content_frame, fragment).addToBackStack(null);
-                ft.commit();
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
+
+                if (MyPrefrences.getUserLogin(getApplicationContext())==false){
+                    popForLogin();
+                }
+                else {
+                    fragment=new UpdateProfile();
+                    FragmentManager fm=getSupportFragmentManager();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("type","none");
+                    bundle.putString("orderitem", "");
+                    bundle.putString("cal_price","");
+                    bundle.putString("totalItem","");
+                    bundle.putInt("length",0);
+                    FragmentTransaction ft=fm.beginTransaction();
+                    fragment.setArguments(bundle);
+                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+                    ft.replace(R.id.content_frame, fragment).addToBackStack(null);
+                    ft.commit();
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+
+
             }
         });
 
+    }
+
+    private void popForLogin() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Navigation.this);
+        builder.setMessage("Please Login")
+                .setCancelable(false)
+                .setPositiveButton("Login", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        Intent intent=new Intent(getApplicationContext(),Login.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Not Now", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+
+
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("Murti Foods");
+        alert.show();
     }
 
     private void searchApi(String str) {
@@ -241,21 +292,34 @@ public class Navigation extends AppCompatActivity
 
         }
         else if (id == R.id.referal) {
-            fragment=new ReferAFriend();
-            FragmentManager fm=getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-            ft.replace(R.id.content_frame, fragment).addToBackStack(null);
-            ft.commit();
+            if (MyPrefrences.getUserLogin(getApplicationContext())==false){
+                popForLogin();
+            }
+            else {
+                fragment=new ReferAFriend();
+                FragmentManager fm=getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+                ft.replace(R.id.content_frame, fragment).addToBackStack(null);
+                ft.commit();
+            }
+
 
         }
         else if (id == R.id.history) {
-            fragment=new History();
-            FragmentManager fm=getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-             ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-            ft.replace(R.id.content_frame, fragment).addToBackStack(null);
-            ft.commit();
+
+            if (MyPrefrences.getUserLogin(getApplicationContext())==false){
+                popForLogin();
+            }
+            else {
+                fragment=new History();
+                FragmentManager fm=getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+                ft.replace(R.id.content_frame, fragment).addToBackStack(null);
+                ft.commit();
+            }
+
 
         }
 // else if (id == R.id.breakfirst) {
@@ -267,12 +331,18 @@ public class Navigation extends AppCompatActivity
 //        }
         else if (id == R.id.changepwd) {
 
-            fragment=new ChangePwd();
-            FragmentManager fm=getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-             ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
-            ft.replace(R.id.content_frame, fragment).addToBackStack(null);
-            ft.commit();
+            if (MyPrefrences.getUserLogin(getApplicationContext())==false){
+                popForLogin();
+            }
+            else {
+                fragment=new ChangePwd();
+                FragmentManager fm=getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout,R.anim.frag_fade_right, R.anim.frag_fad_left);
+                ft.replace(R.id.content_frame, fragment).addToBackStack(null);
+                ft.commit();
+            }
+
         }
         else if (id == R.id.logout) {
             Getseter.editor.clear();

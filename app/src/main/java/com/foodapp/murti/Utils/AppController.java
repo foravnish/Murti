@@ -27,10 +27,14 @@ public class AppController  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mInstance = this;
+        try {
+            mInstance = this;
 //        MultiDex.install(this);
-       // VolleySingleton.getInstance(this);
-        appEnvironment = AppEnvironment.SANDBOX;
+            // VolleySingleton.getInstance(this);
+            appEnvironment = AppEnvironment.SANDBOX;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
