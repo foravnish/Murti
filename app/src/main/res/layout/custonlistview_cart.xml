@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                android:text="₹ "/>
+                android:text=" "/>
             <TextView
             android:id="@+id/price"
             android:layout_below="@+id/disount"
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                android:text="₹ "/>
+                android:text=""/>
         <TextView
             android:id="@+id/newprice"
             android:layout_below="@+id/disount"

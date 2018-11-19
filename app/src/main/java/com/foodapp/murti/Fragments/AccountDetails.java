@@ -80,7 +80,7 @@ public class AccountDetails extends Fragment {
                             lname.setText(jsonObject.optString("lname").toString());
                             house.setText(jsonObject.optString("house_no").toString());
                             street.setText(jsonObject.optString("street").toString());
-                            complex.setText(jsonObject.optString("area").toString());
+                            complex.setText(jsonObject.optString("complex").toString());
                             landmark.setText(jsonObject.optString("landmark").toString());
                             //                city.setText(jsonObject.optString("city_id").toString());
                             city.setText(Getseter.preferences.getString("city_name", ""));

@@ -221,7 +221,7 @@ public class CartFragment extends Fragment {
             id.setText(DataList.get(position).getName().toString());
            // name.setText(DataList.get(position).getName().toString());
             qty.setText(DataList.get(position).getUdate().toString());
-            price.setText(DataList.get(position).getCdate());
+            price.setText("Price ₹: "+DataList.get(position).getCdate());
 
 //            int m1=Integer.parseInt(qty.getText().toString());
 //            int m2=Integer.parseInt(price.getText().toString());
@@ -232,7 +232,6 @@ public class CartFragment extends Fragment {
             close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                 //   Toast.makeText(getActivity(), DataList.get(position).getID().toString(), Toast.LENGTH_SHORT).show();
                     db.removeSingleContact(new Getseter(DataList.get(position).getTime().toString(),null,null,null));
                     fragment=new CartFragment();
                     FragmentManager fm=getFragmentManager();
@@ -247,7 +246,7 @@ public class CartFragment extends Fragment {
 
                 }
             });
-            newprice.setText(DataList.get(position).getUdate3());
+            newprice.setText("Total Amount ₹: "+DataList.get(position).getUdate3());
 
             total=0.0;
             totalItem=0;

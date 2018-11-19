@@ -42,24 +42,7 @@
                 android:textColor="@color/colorAccent"
                 android:background="@drawable/strock_edtttext"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Last Name:"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorAccent"/>
-            <EditText
-                android:id="@+id/lname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:inputType="textPersonName"
-                android:padding="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/colorAccent"
-                android:background="@drawable/strock_edtttext"/>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -99,26 +82,7 @@
                 android:textColor="@color/colorAccent"
                 android:background="@drawable/strock_edtttext"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Complex:"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:visibility="gone"
-                android:textColor="@color/colorAccent"/>
-            <EditText
-                android:id="@+id/complex"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:inputType="textPersonName"
-                android:padding="12dp"
-                android:visibility="gone"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/colorAccent"
-                android:background="@drawable/strock_edtttext"/>
+
 
             <!--<TextView-->
             <!--android:layout_width="match_parent"-->
@@ -219,24 +183,56 @@
                 android:textColor="@color/colorAccent"
                 android:background="@drawable/strock_edtttext"/>
 
-            <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Phone:"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:layout_marginTop="5dp"-->
-            <!--android:textColor="@color/colorAccent"/>-->
-            <!--<EditText-->
-            <!--android:id="@+id/phone"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text=""-->
-            <!--android:padding="12dp"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:textColor="@color/colorAccent"-->
-            <!--android:background="@drawable/strock_edtttext"/>-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GST Details:"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Company Name:"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"/>
+            <EditText
+                android:id="@+id/lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:inputType="textPersonName"
+                android:padding="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/strock_edtttext"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GST No:"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:visibility="visible"
+                android:textColor="@color/colorAccent"/>
+            <EditText
+                android:id="@+id/complex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:inputType="textPersonName"
+                android:padding="12dp"
+                android:visibility="visible"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/strock_edtttext"/>
 
             <Button
                 android:id="@+id/submit"

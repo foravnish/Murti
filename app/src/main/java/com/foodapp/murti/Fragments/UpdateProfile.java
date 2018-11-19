@@ -145,6 +145,8 @@ public class UpdateProfile extends Fragment {
             public void onResponse(JSONObject response) {
                 Getseter.exitdialog(dialog);
 
+                Log.d("sdfsdfdgdgfg", String.valueOf(response));
+
                 try {
                     if (response.optString("status").equals("success")) {
                         JSONArray jsonArray=response.getJSONArray("message");
@@ -161,7 +163,7 @@ public class UpdateProfile extends Fragment {
                             landmark.setText(jsonObject.optString("landmark").toString());
     //                city.setText(jsonObject.optString("city_id").toString());
                             pincode.setText(jsonObject.optString("pincode").toString());
-                            //complex.setText(jsonObject.optString("area").toString());
+                            complex.setText(jsonObject.optString("complex").toString());
                             mobile.setText(jsonObject.optString("mobile").toString());
     //                phone.setText(jsonObject.optString("phone").toString());
 
@@ -309,7 +311,7 @@ public class UpdateProfile extends Fragment {
                         params.put("lname", lname.getText().toString());
                         params.put("house_no", house.getText().toString());
                         params.put("street", street.getText().toString());
-                        params.put("complex", "com");
+                        params.put("complex", complex.getText().toString());
                         params.put("landmark", landmark.getText().toString());
                         params.put("pincode", pincode.getText().toString());
                         params.put("mobile", mobile.getText().toString());

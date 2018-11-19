@@ -55,23 +55,7 @@
                 android:textColor="@color/colorAccent"
                 android:background="@drawable/strock_edtttext"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Last Name:"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorAccent"/>
-            <TextView
-                android:id="@+id/lname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:padding="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/colorAccent"
-                android:background="@drawable/strock_edtttext"/>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,23 +93,7 @@
                 android:textColor="@color/colorAccent"
                 android:background="@drawable/strock_edtttext"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Complex:"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorAccent"/>
-            <TextView
-                android:id="@+id/complex"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:padding="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/colorAccent"
-                android:background="@drawable/strock_edtttext"/>
+
 
 
             <TextView
@@ -188,6 +156,7 @@
                 android:layout_height="wrap_content"
                 android:text="Area:"
                 android:layout_marginLeft="15dp"
+                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/colorAccent"/>
             <TextView
@@ -195,6 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:visibility="gone"
                 android:padding="12dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -219,23 +189,51 @@
                 android:textColor="@color/colorAccent"
                 android:background="@drawable/strock_edtttext"/>
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Phone:"-->
-                <!--android:layout_marginLeft="15dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:textColor="@color/colorAccent"/>-->
-            <!--<TextView-->
-                <!--android:id="@+id/phone"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text=""-->
-                <!--android:padding="12dp"-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--android:layout_marginRight="10dp"-->
-                <!--android:textColor="@color/colorAccent"-->
-                <!--android:background="@drawable/strock_edtttext"/>-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GST Details:"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Company Name:"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"/>
+            <TextView
+                android:id="@+id/lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:padding="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/strock_edtttext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GST No:"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorAccent"/>
+            <TextView
+                android:id="@+id/complex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:padding="12dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:background="@drawable/strock_edtttext"/>
 
         </LinearLayout>
     </ScrollView>
