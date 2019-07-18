@@ -22,10 +22,10 @@ public class ThankAct extends AppCompatActivity {
         TextView phone = (TextView) findViewById(R.id.phone);
 
 
-        email.setText("Email Id :"+getIntent().getStringExtra("email"));
-        phone.setText("Contact  No: "+getIntent().getStringExtra("phone"));
+       // email.setText("Email Id :"+getIntent().getStringExtra("email"));
+        phone.setText("For any Assistance contact :  "+getIntent().getStringExtra("phone"));
         //textDialog1.setText("You have just ordered the "+ getArguments().get("products"));
-        textDialog2.setText("Your order no. is: "+getIntent().getStringExtra("orderno"));
+        textDialog2.setText("Your order will delivered soon. Your order  id : "+getIntent().getStringExtra("orderno"));
        // email.setText("Email :"+getArguments().getString("email"));
       //  phone.setText("Phone : "+getArguments().getString("phone"));
 

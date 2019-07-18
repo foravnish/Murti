@@ -34,9 +34,9 @@ public class Thankyou extends Fragment {
             TextView phone = (TextView) view.findViewById(R.id.phone);
 
             textDialog1.setText("You have just ordered the "+ getArguments().get("products"));
-            textDialog2.setText("Your order no. is: "+getArguments().get("orderno"));
+            textDialog2.setText("Your order will delivered soon. Your order no. is: "+getArguments().get("orderno"));
             email.setText("Email :"+getArguments().getString("email"));
-            phone.setText("Phone : "+getArguments().getString("phone"));
+            phone.setText("For any Assistance contact : "+getArguments().getString("phone"));
 
         Button yes=(Button)view.findViewById(R.id.yes);
         yes.setOnClickListener(new View.OnClickListener() {

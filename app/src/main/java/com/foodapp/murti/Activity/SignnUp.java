@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -38,6 +39,7 @@ public class SignnUp extends AppCompatActivity {
     Dialog dialog;
     JSONObject jsonObject ;
     String refValue;
+    TextView txtTerms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class SignnUp extends AppCompatActivity {
         password=(EditText)findViewById(R.id.password);
         re_password=(EditText)findViewById(R.id.re_password);
         signup=(Button)findViewById(R.id.signup);
-
+        txtTerms=(TextView)findViewById(R.id.txtTerms);
         dialog=new Dialog(SignnUp.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -66,6 +68,13 @@ public class SignnUp extends AppCompatActivity {
         else{
             refValue=MyPrefrences.getRefer(getApplicationContext());
         }
+
+        txtTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +144,7 @@ public class SignnUp extends AppCompatActivity {
 
                     if (jsonObject.optString("status").equals("success")) {
 
-                        Toast.makeText(getApplicationContext(), jsonObject.optString("message").toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), jsonObject.optString("message").toString(), Toast.LENGTH_SHORT).show();
 
                     Getseter.editor.putString("fname",name.getText().toString());
                     Getseter.editor.putString("mobile",mobile.getText().toString());
@@ -190,39 +199,6 @@ public class SignnUp extends AppCompatActivity {
 //        stringRequest.setRetryPolicy(new DefaultRetryPolicy(27000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //stringRequest.setShouldCache(false);
         AppController.getInstance().addToRequestQueue(stringRequest);
-
-
-
-//        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "http://hoomiehome.com/appcredentials/jsondata.php?register=1&name="+name.getText().toString()+"&email="+email.getText().toString()+"&mobile="+mobile.getText().toString()+"&password="+password.getText().toString(), null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//
-//
-//                Log.d("fgfhfgh",response.toString());
-//                if (response.optString("success").equals("1")) {
-//                    Getseter.exitdialog(dialog);
-//                    Toast.makeText(SignnUp.this, response.optString("message").toString(), Toast.LENGTH_SHORT).show();
-//                    Getseter.editor.putString("fname",name.getText().toString());
-//                    Getseter.editor.putString("mobile",mobile.getText().toString());
-//                    Getseter.editor.putString("emailid",email.getText().toString());
-//                    Getseter.editor.commit();
-//
-//                    startActivity(new Intent(SignnUp.this,Login.class));
-//
-//                }
-//                else if (response.optString("success").equals("0")){
-//                    Getseter.exitdialog(dialog);
-//                    Toast.makeText(SignnUp.this, response.optString("message").toString(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getApplicationContext(), "Please connect to the internet.", Toast.LENGTH_SHORT).show();
-//                Getseter.exitdialog(dialog);
-//            }
-//        });
-//        AppController.getInstance().addToRequestQueue(jsonObjectRequest);
 
     }
 }

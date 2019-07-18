@@ -10,8 +10,8 @@ public class Api {
 //        public static  String BaseUrl  =      "http://murtifoods.com/Api/index.php/spinof/";
 //        public static  String HashCode =      "http://murtifoods.com/getHashCode.php";
 
-        public static  String BaseUrl  =      "http://ecart.murtifoods.in/Api/index.php/spinof/";
-        public static  String HashCode =      "http://ecart.murtifoods.in/getHashCode.php";
+        public static  String BaseUrl  =      "https://ecart.murtifoods.in/Api/index.php/spinof/";
+        public static  String HashCode =      "https://ecart.murtifoods.in/getHashCode.php";
 
     public static  String Login=        BaseUrl+"userLogin";
     public static  String userRegistration  =BaseUrl+"userRegistration";

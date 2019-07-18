@@ -261,11 +261,13 @@ public class UpdateProfile extends Fragment {
                                 Toast.makeText(getActivity(), jsonObject.optString("message").toString(), Toast.LENGTH_SHORT).show();
 
                                 if (getArguments().getString("type").equalsIgnoreCase("none")) {
-                                    Fragment fragment = new AccountDetails();
-                                    FragmentManager manager = getFragmentManager();
-                                    FragmentTransaction ft = manager.beginTransaction();
-                                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout, R.anim.frag_fade_right, R.anim.frag_fad_left);
-                                    ft.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+
+                                    Toast.makeText(getActivity(), "Submit successfully.", Toast.LENGTH_SHORT).show();
+//                                    Fragment fragment = new AccountDetails();
+//                                    FragmentManager manager = getFragmentManager();
+//                                    FragmentTransaction ft = manager.beginTransaction();
+//                                    ft.setCustomAnimations(R.anim.frag_fadein, R.anim.frag_fadeout, R.anim.frag_fade_right, R.anim.frag_fad_left);
+//                                    ft.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
                                 }
                                 else  if (getArguments().getString("type").equalsIgnoreCase("prod")) {
 

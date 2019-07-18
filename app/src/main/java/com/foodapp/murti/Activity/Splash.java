@@ -49,7 +49,7 @@ public class Splash extends AppCompatActivity {
 
         sendRegistrationTokenToServer(MyPrefrences.getgcm_token(getApplicationContext()));
 
-        Log.d("sfsdfsdfsdgfsdgf", MyPrefrences.getgcm_token(getApplicationContext()));
+        Log.d("TokenFromFirebase", MyPrefrences.getgcm_token(getApplicationContext()));
 
         thread.start();
     }
@@ -84,6 +84,7 @@ public class Splash extends AppCompatActivity {
                     public void onErrorResponse(VolleyError volleyError) {
                         //Log.w("GCMRegIntentService", "sendRegistrationTokenToServer! ErrorListener:" );
                         Toast.makeText(getApplicationContext(), "Please Connect to the internet.", Toast.LENGTH_LONG).show();
+                        Log.d("erorinpie",volleyError.toString());
 
                     }
                 }) {

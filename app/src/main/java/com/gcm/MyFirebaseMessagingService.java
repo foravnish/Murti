@@ -2,14 +2,21 @@ package com.gcm;
 
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.foodapp.murti.Activity.MainActivity;
@@ -43,19 +50,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        //Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getMessageType());
-        Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getData());
-//        Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getNotification().getBody());
-
-
-        String data= String.valueOf(remoteMessage.getData());
-        String org=data.replace("message=","");
-
-        //org.substring(1, org.length()-1);
-        //Log.d("ffdgdfgdfgd",  org.substring(1, org.length()-1).toString());
-
+//        //Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getMessageType());
+//        Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getData());
+////        Log.e(TAG, "Fromgdfhgdfghfgjf: " + remoteMessage.getNotification().getBody());
+//
+//
+//        String data= String.valueOf(remoteMessage.getData());
+//        String org=data.replace("message=","");
+//
+//        //org.substring(1, org.length()-1);
+//        //Log.d("ffdgdfgdfgd",  org.substring(1, org.length()-1).toString());
+//
         JSONObject jsonObject = new JSONObject(remoteMessage.getData());
-
+//
         try {
             URL url = new URL(jsonObject.optString("image").toString());
             Log.d("fgdgdfgd",jsonObject.optString("image").toString());
@@ -63,45 +70,108 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } catch(IOException e) {
             System.out.println(e);
         }
+//
+//        bitmap = getBitmapfromUrl(jsonObject.optString("image").toString());
+//
+//        //Todo notification
+//        String channelId ="5346436";
+//            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+//            inboxStyle.addLine(jsonObject.optString("body"));
+//            Notification notification;
+//            final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+//
+//            Intent notificationIntent = new Intent(getApplicationContext(), Navigation.class);
+//           // notificationIntent.putExtra("userType","");
+//            PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
+//
+//
+//            notification = mBuilder.setSmallIcon(R.mipmap.new_logo_noti).setTicker(jsonObject.optString("title")).setWhen(0)
+//                    .setAutoCancel(true)
+//                    .setContentTitle(jsonObject.optString("title"))
+//                    .setTicker(jsonObject.optString("title"))
+//                    .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+//                    .setLargeIcon(image)
+//                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+//                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image).bigLargeIcon(null))
+//                    .setSmallIcon(R.mipmap.new_logo_noti)
+//                    .setContentIntent(contentIntent)
+//                    .setContentText(jsonObject.optString("body"))
+//                    .build();
+//
+//        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//
+//        // Since android Oreo notification channel is needed.
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            int importance = NotificationManager.IMPORTANCE_HIGH;
+//            NotificationChannel mChannel = new NotificationChannel(channelId,"Channel human readable title", importance);
+//            mChannel.setDescription("");
+//            mChannel.enableLights(true);
+//            mChannel.setLightColor(ContextCompat.getColor(getApplicationContext(), R.color
+//                    .colorPrimary));
+//            notificationManager.createNotificationChannel(mChannel);
+//        }
+//
+//            if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//                mBuilder.setPriority(android.app.Notification.PRIORITY_HIGH);
+//            }
+//
+//        Long notificationId = SystemClock.currentThreadTimeMillis();
+//            notificationManager.notify(notificationId.intValue(), notification);
 
-        bitmap = getBitmapfromUrl(jsonObject.optString("image").toString());
+        sendNotification(jsonObject.optString("body"),jsonObject.optString("title"));
 
-        //Todo notification
+    }
 
-            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-            inboxStyle.addLine(jsonObject.optString("body"));
-            Notification notification;
-            final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-                    getApplicationContext());
+    private void sendNotification(String content,String title) {
+        Intent intent = new Intent(this, Navigation.class);
+        // Set the Activity to start in a new, empty task
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-            Intent notificationIntent = new Intent(getApplicationContext(), Navigation.class);
-           // notificationIntent.putExtra("userType","");
-            PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
+        // Create the TaskStackBuilder and add the intent, which inflates the back stack
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addNextIntentWithParentStack(intent);
+        // Get the PendingIntent containing the entire back stack
+        PendingIntent pendingIntent =
+                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        String channelId ="5346436";
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-            notification = mBuilder.setSmallIcon(R.mipmap.new_logo_noti).setTicker(jsonObject.optString("title")).setWhen(0)
-                    .setAutoCancel(true)
-                    .setContentTitle(jsonObject.optString("title"))
-                    .setTicker(jsonObject.optString("title"))
-//                .setContentIntent(resultPendingIntent)
-                    .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                   // .setStyle(inboxStyle)
-//                    .setStyle(new NotificationCompat.BigTextStyle().bigText(jsonObject.optString("body")))
-                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
-//                    .setStyle(new NotificationCompat.InboxStyle().addLine(jsonObject.optString("body")))
-                   // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
-//                .setWhen(getTimeMilliSec(timeStamp))
-                    .setSmallIcon(R.mipmap.new_logo_noti)
-                    .setContentIntent(contentIntent)
-//                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap))/*Notification with Image*/
-                   // .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image))
-//                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
-                    .setContentText(jsonObject.optString("body"))
-                    .build();
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.mipmap.new_logo_noti)
+                .setContentTitle(title)
+                .setLargeIcon(image)
+                .setColor(ContextCompat.getColor(this, R.color.colorAccent))
+                .setContentText(content)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent)
+//                .setStyle(new NotificationCompat.BigTextStyle().bigText(content));
+                .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image).bigLargeIcon(null));
 
-            Random random = new Random();
-            NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(random.nextInt(), notification);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(channelId, "Channel human readable title", importance);
+            mChannel.setDescription("");
+            mChannel.enableLights(true);
+            mChannel.setLightColor(ContextCompat.getColor(getApplicationContext(), R.color
+                    .colorPrimary));
+            notificationManager.createNotificationChannel(mChannel);
+        }
+
+        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            notificationBuilder.setPriority(android.app.Notification.PRIORITY_HIGH);
+        }
+
+        Long notificationId = SystemClock.currentThreadTimeMillis();
+
+        notificationManager.notify(notificationId.intValue(), notificationBuilder.build());
 
     }
 
@@ -120,7 +190,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
-
         }
     }
 

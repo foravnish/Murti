@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
-        android:text="Thank you for Placing Order  at Spinof"
+        android:text="Thank you for Placing Order  at Murti Foods"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#228B22"/>
@@ -66,6 +66,7 @@
         android:text="Email :info@hoomiehome.com"
         android:layout_gravity="center"
         android:gravity="center"
+        android:visibility="gone"
         android:textColor="@color/colorAccent"/>
     <TextView
         android:id="@+id/phone"

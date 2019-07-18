@@ -77,6 +77,9 @@ public class Delivery extends Fragment {
         dialog.setCancelable(false);
         Getseter.showdialog(dialog);
 
+        getActivity().setTitle("Payment");
+
+
         db = new DatabaseHandler(getActivity());
         orderitem.setText(getArguments().get("orderitem").toString()+" Item");
         subtotal.setText(getArguments().get("cal_price").toString());
@@ -456,13 +459,20 @@ public class Delivery extends Fragment {
 
                 if (paymentMode.equals("Cash on Delivery")){
 
-                    placeOrder();
+                    if (Getseter.preferences.getString("pincode", "").equals("141001") ||
+                            Getseter.preferences.getString("pincode", "").equals("141002") ||
+                            Getseter.preferences.getString("pincode", "").equals("141003") ||
+                            Getseter.preferences.getString("pincode", "").equals("141004") ||
+                            Getseter.preferences.getString("pincode", "").equals("141005") ||
+                            Getseter.preferences.getString("pincode", "").equals("141006") ||
+                            Getseter.preferences.getString("pincode", "").equals("141007") ||
+                            Getseter.preferences.getString("pincode", "").equals("141008")) {
 
-//                        Intent intent=new Intent(getActivity(), ThankAct.class);
-//                        intent.putExtra("orderno",jsonObject1.optString("order_id"));
-//                        intent.putExtra("email",emailString.toString());
-//                        intent.putExtra("phone",phoneString.toString());
-//                        startActivity(intent);
+
+                        placeOrder();
+                    }else{
+                        Toast.makeText(getActivity(), "Sorry! Cash on Delivery not available on this pincode.", Toast.LENGTH_LONG).show();
+                    }
 //
                 }
                 else if (paymentMode.equals("Credit/Debit card")){
@@ -657,7 +667,7 @@ public class Delivery extends Fragment {
         return view;
     }
 
-    private void chackingAddress() {
+    public void chackingAddress() {
 
         if (!Getseter.preferences.getString("fname","").toString().equals("") &&
                 //   !Getseter.preferences.getString("lname","").toString().equals("") &&
