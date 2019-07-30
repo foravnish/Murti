@@ -178,6 +178,8 @@
                 android:inputType="phone"
                 android:maxLength="10"
                 android:padding="12dp"
+                android:clickable="false"
+                android:focusable="false"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textColor="@color/colorAccent"

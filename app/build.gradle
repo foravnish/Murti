@@ -2,14 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId "com.foodapp.murti"
         minSdkVersion 16
         targetSdkVersion 29
         multiDexEnabled true
-        versionCode 14
-        versionName "2.4"
+        versionCode 15
+        versionName "2.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
