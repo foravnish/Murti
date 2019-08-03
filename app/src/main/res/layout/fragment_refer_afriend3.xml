@@ -39,7 +39,7 @@
                 android:gravity="center"
                 android:layout_marginTop="7dp"
 
-                android:text="If your friend join with your reference then you get 50.00 INR reduction from EMI"/>
+                android:text="If your friend join with your reference then you get 50.00 INR reduction from purchasing product"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginTop="0dp"
-
+                android:visibility="gone"
                 android:text="From our Team"/>
 
 

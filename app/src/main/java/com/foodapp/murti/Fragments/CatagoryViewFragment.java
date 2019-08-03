@@ -3,14 +3,19 @@ package com.foodapp.murti.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,13 +42,18 @@ import com.foodapp.murti.Utils.AppController;
 import com.foodapp.murti.Utils.DatabaseHandler;
 import com.foodapp.murti.Utils.Getseter;
 import com.foodapp.murti.Utils.MyPrefrences;
+import com.jsibbold.zoomage.ZoomageView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -89,6 +101,9 @@ public class CatagoryViewFragment extends Fragment {
 //        Date currentTime = Calendar.getInstance().getTime();
 //        Log.d("sdgdfgdfgdfgf", String.valueOf(currentTime));
 
+
+        getActivity().setTitle("Product Detail");
+
         decrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +129,15 @@ public class CatagoryViewFragment extends Fragment {
 
             }
         });
+
+        parallax_header_imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFullImageDialog(getActivity(), jsonObject.optString("photo"),0, "Photo");
+
+            }
+        });
+
 
         dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -291,6 +315,36 @@ public class CatagoryViewFragment extends Fragment {
         alert.setTitle("Murti Foods");
         alert.show();
     }
+
+
+    public static void showFullImageDialog(Context context, String url, int pos, String titlename) {
+        final Dialog dialog = new Dialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.showfullimage);
+        ImageView back_img = (ImageView) dialog.findViewById(R.id.back_img);
+//          ImageView fact_image = (ImageView) dialog.findViewById(R.id.fact_image);
+
+
+        Log.d("fgdfgdfghsg",url);
+
+        ZoomageView networkImageView = (ZoomageView) dialog.findViewById(R.id.networkImageView);
+
+        Picasso.with(context).load(url).into(networkImageView);
+
+        TextView title = (TextView) dialog.findViewById(R.id.title);
+        title.setText(titlename);
+
+        back_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+    }
+
+
 
 
 }

@@ -79,6 +79,7 @@ public class SubCatagoryFragment extends Fragment {
         dialog.setCancelable(false);
         Getseter.showdialog(dialog);
         adapter=new Adapter();
+        getActivity().setTitle("Product Listing");
 //        adapter2=new Adapter2();
         //adapter2= new Adapter2();
 

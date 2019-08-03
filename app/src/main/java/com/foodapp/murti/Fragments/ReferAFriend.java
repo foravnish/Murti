@@ -35,7 +35,6 @@ public class ReferAFriend extends Fragment {
         View view= inflater.inflate(R.layout.fragment_refer_afriend3, container, false);
 
 
-
         share= (Button) view.findViewById(R.id.share);
         content= (TextView) view.findViewById(R.id.content);
 
